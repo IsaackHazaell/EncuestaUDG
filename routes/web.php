@@ -15,14 +15,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/encuesta', function () {
+    return view('encuesta');
+});
+
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-Route::get('admin', function(){
+Route::get('/home', function(){
   return view('admin.dashboard');
 });
