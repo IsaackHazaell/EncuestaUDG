@@ -32,6 +32,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Google Font -->
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+
+  <!-- DATATABLES -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+  @yield('adminlte_css')
+
 </head>
 <!--
 BODY TAG OPTIONS:
@@ -165,6 +170,30 @@ desired effect
           </ul>
         </li>
 
+        <li class="treeview">
+          <a href="#"><i class="fa fa-address-card"></i> <span>Constancias</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{ url('teacher') }}">Lista de constancias</a></li>
+            <li><a href="{{ url('teacher/create') }}">Dar de alta constancia</a></li>
+          </ul>
+        </li>
+
+        <li class="treeview">
+          <a href="#"><i class="fa fa-address-book-o"></i> <span>Encuestas</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{ url('teacher') }}">Lista de encuestas</a></li>
+            <li><a href="{{ url('teacher/create') }}">Dar de alta encuesta</a></li>
+          </ul>
+        </li>
+
 
       </ul>
       <!-- /.sidebar-menu -->
@@ -175,7 +204,7 @@ desired effect
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Main content -->
-    <section class="content container-fluid">
+    <section class="content">
 
       @yield('content')
 
@@ -207,6 +236,15 @@ desired effect
 <script src="adminlte/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
 <script src="adminlte/js/adminlte.min.js"></script>
+
+<!-- Datatables -->
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+
+<!-- Sweet alert-->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+@yield('adminlte_js')
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
