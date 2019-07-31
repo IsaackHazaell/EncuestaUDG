@@ -6,6 +6,7 @@ use App\Users;
 use Illuminate\Http\Request;
 use DB;
 use Yajra\DataTables\DataTables;
+use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
 {
@@ -68,7 +69,13 @@ class UsersController extends Controller
 
         Users::insert($datosusuario);
 
-        return redirect('users');
+        $msg = [
+          'title' => 'Creado!',
+          'text' => 'Usuario creado exitosamente.',
+          'icon' => 'success'
+          ];
+
+        return redirect('users')->with('message', $msg);
     }
 
     /**
@@ -90,9 +97,9 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        $user=Users::findOrFail($id);
-
-        return view('users.edit',compact('user'));
+        // $user=Users::findOrFail($id);
+        //
+        // return view('users.edit',compact('user'));
     }
 
     /**
@@ -102,13 +109,27 @@ class UsersController extends Controller
      * @param  \App\Users  $users
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        $datosusuario=request()->except(['_token','_method']);
-        Users::where('id','=',$id)->update($datosusuario);
+      $user = Users::findOrFail($request->id);
+      $input = $request->except('password');
+      if($request->password != $user->password )
+      {
+        $user->password = Hash::make($request->password);
+      }
+      // dd($input);
+      $user->fill($input)->save();
 
-        $user=Users::findOrFail($id);
-        return view('users.edit',compact('user'));
+      $msg = [
+        'title' => 'Modificado!',
+        'text' => 'Usuario modificado exitosamente.',
+        'icon' => 'success'
+        ];
+        if(\Auth::user()->id == $request->id)
+        {
+          return redirect('home')->with('message', $msg);
+        }
+        return redirect('users')->with('message', $msg);
     }
 
     /**

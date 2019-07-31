@@ -27,7 +27,7 @@
           </thead>
       </table>
       </div>
-
+      @include('users.modal')
 @stop
 
 @section('adminlte_js')

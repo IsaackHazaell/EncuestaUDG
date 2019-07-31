@@ -1,11 +1,10 @@
 
-  {{ $Modo=='edit'}}
 
   <div class="form-row">
         <div class="form-group col-md-6">
           <label for="name">{{ 'Nombre' }}</label>
           <input type="text" class="form-control" required name="name" id="name"
-          value="{{ isset($user->name)?$user->name:'' }}">
+          value="">
         </div>
   </div>
 
@@ -13,13 +12,13 @@
         <div class="form-group col-md-6">
           <label for="mail">{{ 'Correo' }}</label>
           <input type="email" class="form-control" name="email" id="email"
-          value="{{ isset($user->email)?$user->email:'' }}">
+          value="">
         </div>
 
         <div class="form-group col-md-6">
           <label for="name">{{ 'Contraseña' }}</label>
           <input type="text" class="form-control" required name="password" id="password"
-          value="{{ isset($user->password)?$user->password:'' }}">
+          value="">
         </div>
   </div>
 

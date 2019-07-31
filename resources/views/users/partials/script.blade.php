@@ -32,6 +32,37 @@ table = $('#users_table').DataTable({
 }
 });
 
+//EDIT
+$('#edit').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget)
+    var id = button.data('iduser')
+    var name = button.data('name')
+    var email = button.data('email')
+    var password = button.data('password')
+    var type = button.data('type')
+    console.log(type);
+    type = toType(type);
+    var modal = $(this)
+    modal.find('.modal-body #id').val(id);
+    modal.find('.modal-body #name').val(name);
+    modal.find('.modal-body #email').val(email);
+    modal.find('.modal-body #password').val(password);
+    modal.find('.modal-body #type').val(type);
+});
+
+
+function toType(type) {
+    if(type == "Director o coordinador")
+      type = 0;
+    else if(type == "Jefe de departamento")
+      type = 1;
+      else if(type == "Profesor")
+        type = 2;
+
+    return type;
+}
+
+
 
 //DELETE
 $('body').delegate('.status-user','click',function(){
