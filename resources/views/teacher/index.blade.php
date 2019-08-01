@@ -19,12 +19,10 @@
           <table id="teachers_table" class="table table-striped table-bordered" style="width:100%">
           <thead>
               <tr>
-                  <th width="10px">Id</th>
-                  <th>Codigo</th>
-                  <th>Nombre completo</th>
-                  <th>Tipo de contrato</th>
+                  <th>Código</th>
+                  <th>Nombre</th>
                   <th>Nombramiento</th>
-                  <th>Rol</th>
+                  <th>Tipo de contrato</th>
                   <th width="120px">Acciones</th>
               </tr>
           </thead>

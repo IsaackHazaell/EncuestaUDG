@@ -4,14 +4,12 @@ var table=null;
 table = $('#teachers_table').DataTable({
     "processing": true,
     "serverSide": true,
-    "ajax": "{{route('teacher.showTableT')}}",
+    "ajax": "{{route('teachers.showTableT')}}",
     "columns": [
-        {data: 'id'},
         {data: 'code'},
         {data: 'name'},
-        {data: 'contract_type'},
-        {data: 'designation'},
-        {data: 'user_type'},
+        {data: 'contract'},
+        {data: 'appointment'},
         {data: 'btn'}
     ],
     "language": {

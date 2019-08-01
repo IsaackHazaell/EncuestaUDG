@@ -10,14 +10,16 @@
 
 <form action="{{url('teacher')}}" method="post">
   {{csrf_field()}}
-  
+<div class="box-body">
     <div class="form-row">
-      <div class="form-group col-md-6">
-        <button type="submit" class="btn btn-success">Guardar</button>
-      </div>
-      <div class="form-group col-md-6">
+      <div class="form-group col-md-12">
         <a class="btn btn-primary btn-md addNew" style="float: right;" href="{{ url('teacher') }}"><b>Lista de profesores</b></a><br><br>
       </div>
+      @include('employee.form')
+      <div class="form-group col-md-8">
+        <button type="submit" class="btn btn-success">Guardar</button>
+      </div>
+    </div>
     </div>
 </form>
 @endsection
