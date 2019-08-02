@@ -11,7 +11,7 @@
 @stop
 
 @section('content')
-      <h2>Lista de Ususarios</h2>
+      <h2>Lista de Usuarios</h2>
 
       <a class="btn btn-success btn-md addNew" style="float: right;" href="{{ url('users/create') }}"><b>Agregar Usuario</b></a><br><br>
 

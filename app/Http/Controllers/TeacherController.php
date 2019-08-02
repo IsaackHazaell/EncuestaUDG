@@ -18,15 +18,16 @@ class TeacherController extends Controller
      */
     public function index()
     {
-        $datos['teachers']=Teacher::paginate(5);
 
-        return view('teacher.index',$datos);
+        $users = Users::select('id','name')->where('type',2)->get();
+        return view('teacher.index')->with('users',$users);
+
     }
 
     public function showTableT()
     {
         $users = DB::table('teachers')
-          ->select('teachers.*','employees.*','users.*')
+          ->select('teachers.*','teachers.id as teacher_id','employees.*','employees.id as employee_id','users.*','users.id as user_id')
           ->join('employees', 'employees.id', '=', 'teachers.employee_id')
           ->join('users', 'users.id', '=', 'employees.user_id')
           ->get();
@@ -68,7 +69,7 @@ class TeacherController extends Controller
 
           $msg = [
             'title' => 'Creado!',
-            'text' => 'Usuario creado exitosamente.',
+            'text' => 'Profesor creado exitosamente.',
             'icon' => 'success'
             ];
 
@@ -105,9 +106,20 @@ class TeacherController extends Controller
      * @param  \App\Teacher  $teacher
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Teacher $teacher)
+    public function update(Request $request)
     {
-        //
+      //dd($request);
+      $employee = Employee::findOrFail($request->id);
+      $input = $request->all();
+      $employee->fill($input)->save();
+
+      $msg = [
+        'title' => 'Modificado!',
+        'text' => 'Profesor modificado exitosamente.',
+        'icon' => 'success'
+        ];
+
+        return redirect('teacher')->with('message', $msg);
     }
 
     /**
@@ -116,8 +128,16 @@ class TeacherController extends Controller
      * @param  \App\Teacher  $teacher
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Teacher $teacher)
+    public function destroy($teacher)
     {
-        //
+      //$teacher=Teachers::findOrFail($teacher);
+      $teacher->delete();
+    $msg = [
+        'title' => 'Eliminado!',
+        'text' => 'Profesor eliminado exitosamente.',
+        'icon' => 'success'
+    ];
+
+    return response()->json($msg);
     }
 }

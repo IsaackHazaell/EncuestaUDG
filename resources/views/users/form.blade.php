@@ -16,14 +16,14 @@
         </div>
 
         <div class="form-group col-md-6">
-          <label for="name">{{ 'Contraseña' }}</label>
+          <label for="password">{{ 'Contraseña' }}</label>
           <input type="text" class="form-control" required name="password" id="password"
           value="">
         </div>
   </div>
 
   <div class="form-group col-md-6">
-      <label for="user_type">Seleccione el tipo de usuario</label>
+      <label for="type">Seleccione el tipo de usuario</label>
       <select class="form-control" name="type" id="type">
           <option value="0">Director o Coordinador</option>
           <option value="1">Jefe de departamento</option>

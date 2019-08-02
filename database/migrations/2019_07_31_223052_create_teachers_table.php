@@ -16,8 +16,9 @@ class CreateTeachersTable extends Migration
         Schema::create('teachers', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('employee_id')->unsigned();
-            $table->foreign('employee_id')->references('id')->on('employees')
-                  ->onDelete('cascade');;
+            $table->foreign('employee_id')
+                  ->references('id')->on('employees')
+                  ->onDelete('cascade');
             $table->timestamps();
         });
     }

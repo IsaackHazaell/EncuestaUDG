@@ -111,19 +111,22 @@ class UsersController extends Controller
      */
     public function update(Request $request)
     {
+      // dd($request);
       $user = Users::findOrFail($request->id);
       $input = $request->except('password');
       if($request->password != $user->password )
       {
         $user->password = Hash::make($request->password);
       }
-      // dd($input);
+      // dd($input->name);
       $user->fill($input)->save();
+      $user->type = $request->type;
+      $user->save();
 
       $msg = [
         'title' => 'Modificado!',
         'text' => 'Usuario modificado exitosamente.',
-        'icon' => 'success'
+        'icon' => 'success',
         ];
         if(\Auth::user()->id == $request->id)
         {

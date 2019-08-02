@@ -37,20 +37,19 @@ table = $('#teachers_table').DataTable({
 //EDIT
 $('#edit').on('show.bs.modal', function (event) {
     var button = $(event.relatedTarget)
-    var id = button.data('id')
-    var last_name = button.data('last_name')
-    var first_name = button.data('first_name')
+    var id = button.data('idteacher')
     var code = button.data('code')
-    var user_type = button.data('user_type')
-
+    var name = button.data('name')
+    console.log(name);
+    var appointment = button.data('appointment')
+    var contract = button.data('contract')
     var modal = $(this)
     modal.find('.modal-body #id').val(id);
-    modal.find('.modal-body #last_name').val(last_name);
-    modal.find('.modal-body #first_name').val(first_name);
     modal.find('.modal-body #code').val(code);
-    modal.find('.modal-body #user_type').val(user_type);
+    modal.find('.modal-body #user_id').val(name);
+    modal.find('.modal-body #appointment').val(appointment);
+    modal.find('.modal-body #contract').val(contract);
 });
-
 
 //DELETE
 $('body').delegate('.status-teacher','click',function(){
