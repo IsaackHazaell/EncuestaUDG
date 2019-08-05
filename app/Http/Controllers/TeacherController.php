@@ -128,16 +128,16 @@ class TeacherController extends Controller
      * @param  \App\Teacher  $teacher
      * @return \Illuminate\Http\Response
      */
-    public function destroy($teacher)
+    public function destroy(Teacher $teacher)
     {
-      //$teacher=Teachers::findOrFail($teacher);
-      $teacher->delete();
-    $msg = [
-        'title' => 'Eliminado!',
-        'text' => 'Profesor eliminado exitosamente.',
-        'icon' => 'success'
-    ];
+      $employee=Employee::findOrFail($teacher->employee_id);
+      $employee->delete();
+      $msg = [
+          'title' => 'Eliminado!',
+          'text' => 'Profesor eliminado exitosamente.',
+          'icon' => 'success'
+        ];
 
-    return response()->json($msg);
+      return response()->json($msg);
     }
 }
