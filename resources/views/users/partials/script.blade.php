@@ -8,7 +8,7 @@ table = $('#users_table').DataTable({
     "columns": [
         {data: 'name'},
         {data: 'email'},
-        {data: 'type'},
+        {data: 'user_type'},
         {data: 'btn'}
     ],
     "language": {
@@ -39,15 +39,14 @@ $('#edit').on('show.bs.modal', function (event) {
     var name = button.data('name')
     var email = button.data('email')
     var password = button.data('password')
-    var type = button.data('type')
-    console.log(type);
-    type = toType(type);
+    var user_type = button.data('user_type')
+    user_type = toType(user_type);
     var modal = $(this)
     modal.find('.modal-body #id').val(id);
     modal.find('.modal-body #name').val(name);
     modal.find('.modal-body #email').val(email);
     modal.find('.modal-body #password').val(password);
-    modal.find('.modal-body #type').val(type);
+    modal.find('.modal-body #user_type').val(user_type);
 });
 
 

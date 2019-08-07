@@ -7,7 +7,7 @@ $(document).ready(function (){
 
 function nameDepartment()
 {
-    var type= $('#type').val();
+    var type= $('#user_type').val();
     if (type=='1') {
         document.getElementById('department_name').style.display='block';
         document.getElementById('hdepartment').style.display='block';

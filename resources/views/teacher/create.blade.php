@@ -15,6 +15,7 @@
       <div class="form-group col-md-12">
         <a class="btn btn-primary btn-md addNew" style="float: right;" href="{{ url('teacher') }}"><b>Lista de profesores</b></a><br><br>
       </div>
+      @include('users.form')
       @include('employee.form')
       <div class="form-group col-md-8">
         <button type="submit" class="btn btn-success">Guardar</button>

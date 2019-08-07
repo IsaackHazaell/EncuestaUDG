@@ -22,11 +22,4 @@
         </div>
   </div>
 
-  <div class="form-group col-md-6">
-      <label for="type">Seleccione el tipo de usuario</label>
-      <select onchange="nameDepartment()" class="form-control" name="type" id="type" onchange="seleccionado()">
-          <option value="0">Director o Coordinador</option>
-          <option value="1">Jefe de departamento</option>
-          <option value="2">Profesor</option>
-      </select>
-  </div>
+  

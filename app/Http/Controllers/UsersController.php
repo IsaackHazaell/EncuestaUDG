@@ -34,12 +34,12 @@ class UsersController extends Controller
 
           for($i=0; $i<$users->count(); $i++)
         {
-          if($users[$i]->type == 0)
-            $users[$i]->type = "Director o coordinador";
-          else if($users[$i]->type == 1)
-            $users[$i]->type = "Jefe de departamento";
-            else if($users[$i]->type == 2)
-              $users[$i]->type = "Profesor";
+          if($users[$i]->user_type == 0)
+            $users[$i]->user_type = "Director o coordinador";
+          else if($users[$i]->user_type == 1)
+            $users[$i]->user_type = "Jefe de departamento";
+            else if($users[$i]->user_type == 2)
+              $users[$i]->user_type = "Profesor";
         }
 
           return Datatables::of($users)
@@ -67,13 +67,13 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-
-      $user=Users::create([
-              'name' => $request->name,
-              'type' => $request->type,
-              'email' => $request->email,
-              'password' => $request->password,
-          ]);
+         
+      $user= New Users;
+      $user->name= $request->name;
+      $user->password= $request->password;
+      $user->email= $request->email;
+      $user->user_type= $request->user_type;
+      $user->save();
 
 
         $employee=Employee::create([
@@ -83,7 +83,7 @@ class UsersController extends Controller
                 'user_id' => $user->id,
             ]);
 
-        if ($request->type==1) {
+        if ($request->user_type==1) {
           $department=Department::create([
                       'name' => $request->department_name ,
                   ]);
@@ -91,7 +91,7 @@ class UsersController extends Controller
                       'department_id' => $department->id,
                       'employee_id' => $employee->id,
                   ]);
-         }else if($request->type==2) {
+         }else if($request->user_type==2) {
            $teacher=Teacher::create([
                       'employee_id' => $employee->id,
                     ]);
@@ -151,7 +151,7 @@ class UsersController extends Controller
       }
       // dd($input->name);
       $user->fill($input)->save();
-      $user->type = $request->type;
+      $user->user_type = $request->user_type;
       $user->save();
 
       $msg = [

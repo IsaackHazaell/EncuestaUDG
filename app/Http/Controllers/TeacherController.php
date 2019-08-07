@@ -19,7 +19,7 @@ class TeacherController extends Controller
     public function index()
     {
 
-        $users = Users::select('id','name')->where('type',2)->get();
+        $users = Users::select('id','name')->where('user_type',2)->get();
         return view('teacher.index')->with('users',$users);
 
     }
@@ -44,7 +44,7 @@ class TeacherController extends Controller
      */
     public function create()
     {
-        $users = Users::select('id','name')->where('type',2)->get();
+        $users = Users::select('id','name')->where('user_type',2)->get();
         return view('teacher.create')->with('users',$users);
     }
 
@@ -56,25 +56,35 @@ class TeacherController extends Controller
      */
     public function store(Request $request)
     {
-      {
-          $datosteacher=request()->all();
+         
+      $user= New Users;
+      $user->name= $request->name;
+      $user->password= $request->password;
+      $user->email= $request->email;
+      $user->user_type= 2;
+      $user->save();
 
-          $datosteacher=request()->except('_token');
 
-          $employee=Employee::create($datosteacher);
-          //$employee = Employee::create($request->all());
-          $user = New Teacher;
-          $user->employee_id = $employee->id;
-          $user->save();
+        $employee=Employee::create([
+                'code' => $request->code,
+                'contract' => $request->contract,
+                'appointment' => $request->appointment,
+                'user_id' => $user->id,
+            ]);
 
-          $msg = [
-            'title' => 'Creado!',
-            'text' => 'Profesor creado exitosamente.',
-            'icon' => 'success'
-            ];
+           $teacher=Teacher::create([
+                      'employee_id' => $employee->id,
+            ]);
 
-          return redirect('teacher')->with('message', $msg);
-      }
+            ///
+
+        $msg = [
+          'title' => 'Creado!',
+          'text' => 'Usuario creado exitosamente.',
+          'icon' => 'success'
+          ];
+
+        return redirect('teacher')->with('message', $msg);
     }
 
     /**
