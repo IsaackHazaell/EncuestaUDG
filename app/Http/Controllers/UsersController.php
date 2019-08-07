@@ -11,6 +11,7 @@ use App\Employee;
 use App\Department;
 use App\Teacher;
 use App\HeadDepartment;
+use App\Type;
 
 class UsersController extends Controller
 {
@@ -29,7 +30,8 @@ class UsersController extends Controller
     public function showTableU()
     {
         $users = DB::table('users')
-          ->select('users.*')
+          ->select('users.*','users.id as user_id','types.user_type')
+          ->join('types', 'types.user_id', '=', 'users.id')
           ->get();
 
           for($i=0; $i<$users->count(); $i++)
@@ -68,13 +70,16 @@ class UsersController extends Controller
     public function store(Request $request)
     {
          
-      $user= New Users;
-      $user->name= $request->name;
-      $user->password= $request->password;
-      $user->email= $request->email;
-      $user->user_type= $request->user_type;
-      $user->save();
+       $user= New Users;
+       $user->name= $request->name;
+       $user->password= $request->password;
+       $user->email= $request->email;      
+       $user->save();
 
+       $type=Type::create([
+        'user_id' => $user->id,
+        'user_type' => $request->user_type,
+          ]);
 
         $employee=Employee::create([
                 'code' => $request->code,

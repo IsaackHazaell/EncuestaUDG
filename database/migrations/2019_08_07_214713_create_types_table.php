@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEmployeesTable extends Migration
+class CreateTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,14 @@ class CreateEmployeesTable extends Migration
      */
     public function up()
     {
-        Schema::create('employees', function (Blueprint $table) {
+        Schema::create('types', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->biginteger('code');
-            $table->string('contract');
-            $table->string('appointment');
+           
+            $table->integer('user_type');      
+            $table->timestamps();
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')
                   ->onDelete('cascade');
-            $table->timestamps();
-
         });
     }
 
@@ -33,6 +31,6 @@ class CreateEmployeesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('employees');
+        Schema::dropIfExists('types');
     }
 }

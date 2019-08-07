@@ -8,6 +8,8 @@ use App\Users;
 use App\Employee;
 use DB;
 use Yajra\DataTables\DataTables;
+use App\Type;
+
 
 class TeacherController extends Controller
 {
@@ -18,8 +20,12 @@ class TeacherController extends Controller
      */
     public function index()
     {
-
-        $users = Users::select('id','name')->where('user_type',2)->get();
+        // $users = Users::select('id','name')->where('user_type',2)->get();
+        $users = DB::table('users')
+          ->select('users.id','users.id as user_id','users.name','types.user_type')
+          ->join('types', 'types.user_id', '=', 'users.id')
+          ->where('types.user_type','2')
+          ->get();
         return view('teacher.index')->with('users',$users);
 
     }
@@ -27,9 +33,10 @@ class TeacherController extends Controller
     public function showTableT()
     {
         $users = DB::table('teachers')
-          ->select('teachers.*','teachers.id as teacher_id','employees.*','employees.id as employee_id','users.*','users.id as user_id')
+          ->select('teachers.*','teachers.id as teacher_id','employees.*','employees.id as employee_id','users.*','users.id as user_id','types.user_type')
           ->join('employees', 'employees.id', '=', 'teachers.employee_id')
           ->join('users', 'users.id', '=', 'employees.user_id')
+          ->join('types', 'types.user_id', '=', 'users.id')
           ->get();
 
           return Datatables::of($users)
@@ -44,7 +51,11 @@ class TeacherController extends Controller
      */
     public function create()
     {
-        $users = Users::select('id','name')->where('user_type',2)->get();
+      $users = DB::table('users')
+      ->select('users.id','users.id as user_id','users.name','types.user_type')
+      ->join('types', 'types.user_id', '=', 'users.id')
+      ->where('types.user_type','2')
+      ->get();
         return view('teacher.create')->with('users',$users);
     }
 
@@ -61,8 +72,12 @@ class TeacherController extends Controller
       $user->name= $request->name;
       $user->password= $request->password;
       $user->email= $request->email;
-      $user->user_type= 2;
       $user->save();
+
+      $type=Type::create([
+        'user_id' => $user->id,
+        'user_type' => $type = '2',
+          ]);
 
 
         $employee=Employee::create([
