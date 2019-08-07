@@ -183,6 +183,18 @@ desired effect
         </li>
 
         <li class="treeview">
+          <a href="#"><i class="fa fa-address-book-o"></i> <span>Departamentos</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{ url('department') }}">Lista de departamentos</a></li>
+            <li><a href="{{ url('department/create') }}">Dar de alta departamento</a></li>
+          </ul>
+        </li>
+
+        <li class="treeview">
           <a href="#"><i class="fa fa-address-card"></i> <span>Constancias</span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>

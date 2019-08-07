@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 use DB;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Hash;
+use App\Employee;
+use App\Department;
+use App\Teacher;
+use App\HeadDepartment;
 
 class UsersController extends Controller
 {
@@ -63,11 +67,38 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        $datosusuario=request()->all();
 
-        $datosusuario=request()->except('_token');
+      $user=Users::create([
+              'name' => $request->name,
+              'type' => $request->type,
+              'email' => $request->email,
+              'password' => $request->password,
+          ]);
 
-        Users::insert($datosusuario);
+
+        $employee=Employee::create([
+                'code' => $request->code,
+                'contract' => $request->contract,
+                'appointment' => $request->appointment,
+                'user_id' => $user->id,
+            ]);
+
+        if ($request->type==1) {
+          $department=Department::create([
+                      'name' => $request->department_name ,
+                  ]);
+          $headdepartment=HeadDepartment::create([
+                      'department_id' => $department->id,
+                      'employee_id' => $employee->id,
+                  ]);
+         }else if($request->type==2) {
+           $teacher=Teacher::create([
+                      'employee_id' => $employee->id,
+                    ]);
+         }
+
+
+            ///
 
         $msg = [
           'title' => 'Creado!',
@@ -130,7 +161,7 @@ class UsersController extends Controller
         ];
         if(\Auth::user()->id == $request->id)
         {
-          return redirect('home')->with('message', $msg);
+          return redirect('users')->with('message', $msg);
         }
         return redirect('users')->with('message', $msg);
     }

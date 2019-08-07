@@ -32,3 +32,7 @@ Route::get('showTableU','UsersController@showTableU')->name('users.showTableU');
 //Teachers rout's
 Route::resource('teacher','TeacherController');
 Route::get('showTableT','TeacherController@showTableT')->name('teachers.showTableT');
+
+//Departments rout's
+Route::resource('department','DepartmentController');
+Route::get('showTableD','DepartmentController@showTableD')->name('departments.showTableD');
