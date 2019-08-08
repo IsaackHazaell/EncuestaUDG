@@ -40,6 +40,11 @@ $('#edit').on('show.bs.modal', function (event) {
     var email = button.data('email')
     var password = button.data('password')
     var user_type = button.data('user_type')
+    var code = button.data('code')
+    var name = button.data('name')
+    console.log(name);
+    var appointment = button.data('appointment')
+    var contract = button.data('contract')
     user_type = toType(user_type);
     var modal = $(this)
     modal.find('.modal-body #id').val(id);
@@ -47,6 +52,10 @@ $('#edit').on('show.bs.modal', function (event) {
     modal.find('.modal-body #email').val(email);
     modal.find('.modal-body #password').val(password);
     modal.find('.modal-body #user_type').val(user_type);
+    modal.find('.modal-body #code').val(code);
+    modal.find('.modal-body #user_id').val(name);
+    modal.find('.modal-body #appointment').val(appointment);
+    modal.find('.modal-body #contract').val(contract);
 });
 
 

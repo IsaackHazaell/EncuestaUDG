@@ -23,5 +23,12 @@ class DatabaseSeeder extends Seeder
         $type->user_id = $admin->id;
         $type->user_type = '0';
         $type->save();
+        
+        $employee = new App\Employee();
+        $employee->user_id = $admin->id;
+        $employee->code = '00000';
+        $employee->contract = 'admin';
+        $employee->appointment = 'admin';
+        $employee->save();
     }
 }

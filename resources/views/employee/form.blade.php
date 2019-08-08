@@ -1,5 +1,5 @@
 
-  <div class="form-row">
+<div class="form-row">
 
     <div class="form-group col-md-6">
       <label for="code">Código de docente</label>

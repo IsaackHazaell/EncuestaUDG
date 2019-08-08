@@ -120,9 +120,18 @@ class UsersController extends Controller
      * @param  \App\Users  $users
      * @return \Illuminate\Http\Response
      */
-    public function show(Users $users)
+    public function show(Users $user)
     {
-        //
+      
+      $employee = DB::table('employees')->where('user_id', $user->id)->first();
+      $type = Type::where('user_id',$user->id)->firstOrFail();
+        if($type->user_type == 0)
+          $type->user_type = "Director o Coordinador";
+        else if($type->user_type == 1)
+          $type->user_type = "Jefe de departamento";
+          else if($type->user_type == 2)
+            $type->user_type = "Profesor";
+      return view('users.show')->with('user',$user)->with('type',$type)->with('employee',$employee);
     }
 
     /**
@@ -154,10 +163,11 @@ class UsersController extends Controller
       {
         $user->password = Hash::make($request->password);
       }
-      // dd($input->name);
       $user->fill($input)->save();
-      $user->user_type = $request->user_type;
-      $user->save();
+
+      $type = Type::where('user_id',$request->id)->firstOrFail();
+      $type->user_type = $request->user_type;
+      $type->save();
 
       $msg = [
         'title' => 'Modificado!',

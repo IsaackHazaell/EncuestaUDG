@@ -1,3 +1,6 @@
+<a href="{{ route('users.show', $user_id) }}" class="btn btn-info btn-sm">
+  <i class="fa fa-eye"></i></a>
+
 <button class="btn btn-primary btn-sm"
   data-iduser="{{$id}}"
   data-name="{{$name}}"
