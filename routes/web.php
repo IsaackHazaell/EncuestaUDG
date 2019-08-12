@@ -25,6 +25,10 @@ Route::get('/home', function(){
   return view('admin.dashboard');
 });
 
+Route::get('/users/profile', function(){
+  return view('users.profile');
+});
+
 //Users rout's
 Route::resource('users','UsersController');
 Route::get('showTableU','UsersController@showTableU')->name('users.showTableU');

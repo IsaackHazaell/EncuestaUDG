@@ -98,7 +98,7 @@ desired effect
               </li>
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
+                <a href="{{ url('users/profile') }}" class="btn btn-default btn-flat">Perfil</a>
                 </div>
                 <div class="pull-right">
                   <a href="{{ route('logout') }}" onclick="event.preventDefault();

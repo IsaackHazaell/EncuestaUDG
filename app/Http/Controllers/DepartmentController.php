@@ -48,7 +48,7 @@ class DepartmentController extends Controller
      */
     public function create()
     {
-      $users = Users::select('id','name')->where('user_type',1)->get();
+      $users = Users::select('id','name')->where('user_typegit st',1)->get();
       return view('department.create')->with('users',$users);
     }
 
