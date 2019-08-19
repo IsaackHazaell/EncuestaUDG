@@ -12,6 +12,7 @@ use App\Department;
 use App\Teacher;
 use App\HeadDepartment;
 use App\Type;
+use Illuminate\Support\Facades\Storage;
 
 class UsersController extends Controller
 {
@@ -30,14 +31,15 @@ class UsersController extends Controller
     public function showTableU()
     {
         $users = DB::table('users')
-          ->select('users.*','users.id as user_id','types.user_type')
+          ->select('users.*','users.id as user_id','types.user_type','employees.*','employees.id as employee_id')
           ->join('types', 'types.user_id', '=', 'users.id')
+          ->join('employees','employees.user_id','users.id')
           ->get();
 
           for($i=0; $i<$users->count(); $i++)
         {
           if($users[$i]->user_type == 0)
-            $users[$i]->user_type = "Director o coordinador";
+            $users[$i]->user_type = "Director o Coordinador";
           else if($users[$i]->user_type == 1)
             $users[$i]->user_type = "Jefe de departamento";
             else if($users[$i]->user_type == 2)
@@ -73,8 +75,9 @@ class UsersController extends Controller
        $user= New Users;
        $user->name= $request->name;
        $user->password= $request->password;
-       $user->email= $request->email;      
-       $user->save();
+       $user->password = Hash::make($request->password);
+       $user->email= $request->email;
+      $user->save();     
 
        $type=Type::create([
         'user_id' => $user->id,
@@ -134,6 +137,7 @@ class UsersController extends Controller
       return view('users.show')->with('user',$user)->with('type',$type)->with('employee',$employee);
     }
 
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -156,14 +160,23 @@ class UsersController extends Controller
      */
     public function update(Request $request)
     {
-      // dd($request);
       $user = Users::findOrFail($request->id);
-      $input = $request->except('password');
-      if($request->password != $user->password )
+  
+        $user->name = $request->name;
+        if($request->password != $user->password )
       {
         $user->password = Hash::make($request->password);
       }
-      $user->fill($input)->save();
+        $user->email = $request->email;
+
+    if($request->hasFile('image'))
+      {
+          if($user->image != 'user.png'){
+              Storage::delete($user->image);
+          }
+          $user->image =  $request->file('image')->store('public');
+      }      
+      $user->save();
 
       $type = Type::where('user_id',$request->id)->firstOrFail();
       $type->user_type = $request->user_type;

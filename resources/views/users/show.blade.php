@@ -11,6 +11,12 @@
 <div class="form-group col-md-12">
     <a class="btn btn-primary btn-md addNew" style="float: right;" href="{{ url('users') }}"><b>Lista de Usuarios</b></a><br><br>
 </div>
+  <div class="form-row">
+      <div class="form-group col-md-12">
+          <img class="img-responsive" src="{{ Storage::url("../storage/{$user->image}") }}" width="190" height="190"/>
+          
+      </div>
+  </div>
     <div class="form-row">
         <div class="form-group col-md-6">
             <label for="name">Nombre</label>
@@ -59,7 +65,7 @@
       data-contract="{{$employee->contract}}"
       data-appointment="{{$employee->appointment}}""
       data-toggle="modal" data-target="#edit"><i class="fa fa-edit"></i>Editar</button>
-</div>
+    </div>
 </div>
 
 @endsection

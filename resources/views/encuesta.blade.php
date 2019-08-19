@@ -9,4 +9,5 @@
     <img src="image\sistemadiagnostico.jpg" alt="">
     <!-- Aún no se ve la imagen -->
   </body>
+
 </html>

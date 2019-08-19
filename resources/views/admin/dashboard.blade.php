@@ -1,5 +1,5 @@
 @extends('admin.layout')
 
 @section('content')
-  <h1>Dashboard</h1>
+<img src="{{ Storage::url("../storage/SE.jpg") }}" style="width:100%;" alt="">
 @stop

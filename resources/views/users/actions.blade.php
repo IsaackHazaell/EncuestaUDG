@@ -7,6 +7,9 @@
   data-email="{{$email}}"
   data-password="{{$password}}"
   data-user_type="{{$user_type}}"
+  data-code="{{$code}}"
+  data-contract="{{$contract}}"
+  data-appointment="{{$appointment}}""
   data-toggle="modal" data-target="#edit"><i class="fa fa-edit"></i></button>
 
   <a id_user="{{ $id }}" class="btn btn-danger btn-sm status-user">

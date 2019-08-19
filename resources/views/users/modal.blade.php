@@ -6,12 +6,19 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel">Editar usuario</h4>
       </div>
-      <form action="{{route('users.update','modifyuser')}}" method="post">
+      <form action="{{route('users.update','modifyuser')}}" method="post" enctype="multipart/form-data">
           {{method_field('patch')}}
           {{csrf_field()}}
         <div class="modal-body">
             <input type="hidden" name="id" id="id">
         @include('users.form')
+        <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="image">{{ 'Imagen' }}</label>
+              <input type="file" class="form-control" name="image" id="image" value="">
+            </div>
+      </div>
+        @include('employee.form')
         <div class="form-group col-md-6">
           <label for="user_type">Seleccione el tipo de usuario</label>
           <select onchange="nameDepartment()" class="form-control" name="user_type" id="user_type" onchange="seleccionado()">

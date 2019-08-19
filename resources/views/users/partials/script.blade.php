@@ -42,6 +42,7 @@ $('#edit').on('show.bs.modal', function (event) {
     var user_type = button.data('user_type')
     var code = button.data('code')
     var name = button.data('name')
+    var image = button.data('image')
     console.log(name);
     var appointment = button.data('appointment')
     var contract = button.data('contract')
@@ -56,11 +57,12 @@ $('#edit').on('show.bs.modal', function (event) {
     modal.find('.modal-body #user_id').val(name);
     modal.find('.modal-body #appointment').val(appointment);
     modal.find('.modal-body #contract').val(contract);
+    modal.find('.modal-body #image').val(image);
 });
 
 
 function toType(type) {
-    if(type == "Director o coordinador")
+    if(type == "Director o Coordinador")
       type = 0;
     else if(type == "Jefe de departamento")
       type = 1;
