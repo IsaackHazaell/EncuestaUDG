@@ -3,14 +3,19 @@
 @include('users.modal')
 
 <section class="content-header">
-  <h1>
-    Usuario
-  </h1>
+    <div class="form-group col-md-12">
+        <div class="form-group col-md-6">
+        <h2>Usuario</h2>
+      </div>
+      <div class="form-group col-md-6">
+          <a class="btn btn-primary btn-md addNew" style="float: right;" href="{{ url('users') }}"><b>Lista de Usuarios</b></a><br><br>
+        </div>
+    </div>
+  
 </section>
 
-<div class="form-group col-md-12">
-    <a class="btn btn-primary btn-md addNew" style="float: right;" href="{{ url('users') }}"><b>Lista de Usuarios</b></a><br><br>
-</div>
+
+<div class="box-body">
   <div class="form-row">
       <div class="form-group col-md-12">
           <img class="img-responsive" src="{{ Storage::url("../storage/{$user->image}") }}" width="190" height="190"/>
@@ -66,6 +71,7 @@
       data-appointment="{{$employee->appointment}}""
       data-toggle="modal" data-target="#edit"><i class="fa fa-edit"></i>Editar</button>
     </div>
+  </div>
 </div>
 
 @endsection

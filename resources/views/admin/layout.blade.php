@@ -103,7 +103,7 @@ desired effect
                 <div class="pull-right">
                   <a href="{{ route('logout') }}" onclick="event.preventDefault();
                   document.getElementById('logout-form').submit();"
-                  class="btn btn-default btn-flat">Sign out</a>
+                  class="btn btn-default btn-flat">Salir</a>
                 </div>
               </li>
             </ul>
@@ -138,14 +138,14 @@ desired effect
           <p>{{ Auth::user()->name }}</p>
           <!-- <p>Alexander Pierce</p> -->
           <!-- Status -->
-          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+          <a href="#"><i class="fa fa-circle text-success"></i> En linea</a>
         </div>
       </div>
 
       <!-- search form (Optional) -->
       <form action="#" method="get" class="sidebar-form">
         <div class="input-group">
-          <input type="text" name="q" class="form-control" placeholder="Search...">
+          <input type="text" name="q" class="form-control" placeholder="Buscar...">
           <span class="input-group-btn">
               <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
               </button>
@@ -182,7 +182,7 @@ desired effect
           </ul>
         </li>
 
-        {{-- <li class="treeview">
+        <li class="treeview">
           <a href="#"><i class="fa fa-address-book-o"></i> <span>Departamentos</span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
@@ -192,7 +192,7 @@ desired effect
             <li><a href="{{ url('department') }}">Lista de departamentos</a></li>
             <li><a href="{{ url('department/create') }}">Dar de alta departamento</a></li>
           </ul>
-        </li> --}}
+        </li>
 
         <li class="treeview">
           <a href="#"><i class="fa fa-file-text-o"></i> <span>Constancias</span>
