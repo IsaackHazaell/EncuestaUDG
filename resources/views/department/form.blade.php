@@ -1,7 +1,7 @@
 
-  <div class="form-row">
+  <div class="form-row" id="div_boss">
             <div class="form-group col-md-6">
-              <label for="department_name" id="hdepartment">Departamento</label>
-              <input type="text" class="form-control" name="department_name" id="department_name">
-      </div>
+                <label for="">Seleccione departamento del que es jefe</label>
+                <input type="text" class="form-control" name="jefe_departamento" id="jefe_departamento">
+            </div>
   </div>

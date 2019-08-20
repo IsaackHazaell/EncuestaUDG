@@ -7,14 +7,17 @@ $(document).ready(function (){
 
 function nameDepartment()
 {
-    var type= $('#user_type').val();
-    if (type=='1') {
-        document.getElementById('department_name').style.display='block';
-        document.getElementById('hdepartment').style.display='block';
-    }else {
-      document.getElementById('department_name').style.display='none';
-      document.getElementById('hdepartment').style.display='none';
-    }
+   var jefe = document.getElementById("user_jefe");
+   var profesor = document.getElementById("user_profesor");
+   if(jefe.checked)
+       document.getElementById('div_boss').style.display='inline';
+   else
+       document.getElementById('div_boss').style.display='none';
+   
+    if(profesor.checked)
+       document.getElementById('div_profesor').style.display='inline';
+   else
+       document.getElementById('div_profesor').style.display='none';
 }
 
 
