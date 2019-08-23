@@ -31,25 +31,14 @@ class UsersController extends Controller
     public function showTableU()
     {
         $users = DB::table('users')
-          ->select('users.*','users.id as user_id','types.user_type','employees.*','employees.id as employee_id')
-          ->join('types', 'types.user_id', '=', 'users.id')
+          ->select('users.*','users.id as user_id','employees.*','employees.id as employee_id')
           ->join('employees','employees.user_id','users.id')
           ->get();
-
-          for($i=0; $i<$users->count(); $i++)
-        {
-          if($users[$i]->user_type == 0)
-            $users[$i]->user_type = "Director o Coordinador";
-          else if($users[$i]->user_type == 1)
-            $users[$i]->user_type = "Jefe de departamento";
-            else if($users[$i]->user_type == 2)
-              $users[$i]->user_type = "Profesor";
-        }
-
+          
           return Datatables::of($users)
           ->addColumn('btn', 'users.actions')
           ->rawColumns(['btn'])
-        ->make(true);
+          ->make(true);
     }
 
 
@@ -77,12 +66,31 @@ class UsersController extends Controller
        $user->password= $request->password;
        $user->password = Hash::make($request->password);
        $user->email= $request->email;
-      $user->save();     
+       $user->save();     
 
+       if (isset($_POST['user_director']))
        $type=Type::create([
-        'user_id' => $user->id,
-        'user_type' => $request->user_type,
-          ]);
+           'user_id' => $user->id,
+           'user_type' => 0,
+             ]);
+
+       if (isset($_POST['user_jefe']))
+       $type=Type::create([
+           'user_id' => $user->id,
+           'user_type' => 1,
+             ]);
+
+       if (isset($_POST['user_profesor']))
+       $type=Type::create([
+           'user_id' => $user->id,
+           'user_type' => 2,
+             ]);
+      
+      
+      //  $type=Type::create([
+      //   'user_id' => $user->id,
+      //   'user_type' => $request->user_type,
+      //     ]);
 
         $employee=Employee::create([
                 'code' => $request->code,
@@ -91,22 +99,19 @@ class UsersController extends Controller
                 'user_id' => $user->id,
             ]);
 
-        if ($request->user_type==1) {
-          $department=Department::create([
-                      'name' => $request->department_name ,
-                  ]);
-          $headdepartment=HeadDepartment::create([
-                      'department_id' => $department->id,
-                      'employee_id' => $employee->id,
-                  ]);
-         }else if($request->user_type==2) {
-           $teacher=Teacher::create([
-                      'employee_id' => $employee->id,
-                    ]);
-         }
-
-
-            ///
+        //  if ($request->user_type==1) {
+        //    $department=Department::create([
+        //                'name' => $request->department_name ,
+        //            ]);
+        //    $headdepartment=HeadDepartment::create([
+        //                'department_id' => $department->id,
+        //                'employee_id' => $employee->id,
+        //            ]);
+        //   }else if($request->user_type==2) {
+        //     $teacher=Teacher::create([
+        //                'employee_id' => $employee->id,
+        //              ]);
+        // }
 
         $msg = [
           'title' => 'Creado!',
@@ -127,14 +132,10 @@ class UsersController extends Controller
     {
       
       $employee = DB::table('employees')->where('user_id', $user->id)->first();
-      $type = Type::where('user_id',$user->id)->firstOrFail();
-        if($type->user_type == 0)
-          $type->user_type = "Director o Coordinador";
-        else if($type->user_type == 1)
-          $type->user_type = "Jefe de departamento";
-          else if($type->user_type == 2)
-            $type->user_type = "Profesor";
-      return view('users.show')->with('user',$user)->with('type',$type)->with('employee',$employee);
+      $types = Type::where('user_id',$user->id)->get();
+      //dd($type);
+        
+      return view('users.show')->with('user',$user)->with('types',$types)->with('employee',$employee);
     }
 
 

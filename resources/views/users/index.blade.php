@@ -20,8 +20,8 @@
           <thead>
               <tr>
                   <th>Nombre completo</th>
+                  <th>Código</th>
                   <th>Correo</th>
-                  <th>Tipo</th>
                   <th width="120px">Acciones</th>
               </tr>
           </thead>

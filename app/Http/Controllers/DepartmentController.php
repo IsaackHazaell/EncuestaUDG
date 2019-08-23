@@ -61,21 +61,25 @@ class DepartmentController extends Controller
     public function store(Request $request)
     {
         //guardar empleado
-        // $employee=Employee::create([
-        //         'code' => $request->code,
-        //         'contract' => $request->contract,
-        //         'appointment' => $request->appointment,
-        //         'user_id' => $request->user_id,
-        //     ]);
-        // //guardar dpto
-        // $department=Department::create([
-        //         'name' => $request->department,
-        //         ]);
-        // //guardar jefe dpto
-        // $user = New HeadDepartment;
-        // $user->employee_id = $employee->id;
-        // $user->department_id = $department->id;
-        // $user->save();
+         $employee=Employee::create([
+                 'code' => $request->code,
+                 'contract' => $request->contract,
+                 'appointment' => $request->appointment,
+                 'user_id' => $request->user_id,
+             ]);
+            $type=Type::create([
+            'user_id' => $user->id,
+            'user_type' => $request->user_type,
+          ]);
+         //guardar dpto
+         $department=Department::create([
+                 'name' => $request->department,
+                 ]);
+         //guardar jefe dpto
+         $user = New HeadDepartment;
+         $user->employee_id = $employee->id;
+         $user->department_id = $department->id;
+         $user->save();
 
 
          $msg = [

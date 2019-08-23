@@ -1,6 +1,6 @@
 @extends('admin.layout')
 @section('content')
-@include('users.modal')
+{{-- @include('users.modal') --}}
 
 <section class="content-header">
     <div class="form-group col-md-12">
@@ -54,9 +54,29 @@
         </div>
     </div>
 
-    <div class="form-group col-md-6">
-      <label for="user_type">Tipo de usuario</label>
-      <input type="text" class="form-control" required name="user_type" id="user_type" value="{{$type->user_type}}" readonly>
+    <div class=" form-group col-md-6">
+      @foreach ($types as $type)
+        <div class="form-check" style="display:inline-block" method="post">
+          @if ($type->user_type == 0)
+          <input checked class="form-check-input" type="checkbox" id="user_director" name="user_director" onclick="return false;">
+          <label class="form-check-label" for="user_director" style="padding-right:15px; padding-top:30px;">
+            Director/Coordinador
+          </label>
+          @endif
+          @if ($type->user_type == 1)
+          <input checked class="form-check-input" type="checkbox" id="user_jefe" name="user_jefe" onclick="return false;">
+          <label class="form-check-label" for="user_jefe" style="padding-right:15px; padding-top:30px;">
+            Jefe de departamento
+          </label>
+          @endif
+          @if ($type->user_type == 2)
+            <input checked class="form-check-input" type="checkbox" id="user_profesor" name="user_profesor"  onclick="return false;">
+            <label class="form-check-label" for="user_profesor" style="padding-right:15px; padding-top:30px;">
+              Profesor
+            </label>
+            @endif
+          </div>
+      @endforeach
     </div>
   <div class="form-row">
     <div class="form-group col-md-12">

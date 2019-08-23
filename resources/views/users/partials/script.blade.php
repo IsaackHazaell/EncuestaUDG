@@ -7,8 +7,8 @@ table = $('#users_table').DataTable({
     "ajax": "{{route('users.showTableU')}}",
     "columns": [
         {data: 'name'},
+        {data: 'code'},
         {data: 'email'},
-        {data: 'user_type'},
         {data: 'btn'}
     ],
     "language": {

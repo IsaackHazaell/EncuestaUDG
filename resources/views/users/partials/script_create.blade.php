@@ -1,10 +1,5 @@
 <script>
 
-
-$(document).ready(function (){
-    nameDepartment();
-});
-
 function nameDepartment()
 {
    var jefe = document.getElementById("user_jefe");

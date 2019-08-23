@@ -6,7 +6,6 @@
   data-name="{{$name}}"
   data-email="{{$email}}"
   data-password="{{$password}}"
-  data-user_type="{{$user_type}}"
   data-code="{{$code}}"
   data-contract="{{$contract}}"
   data-appointment="{{$appointment}}""
