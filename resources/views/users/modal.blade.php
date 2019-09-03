@@ -17,6 +17,7 @@
                   <input type="file" class="form-control" name="image" id="image" value="">
                 </div>
             </div>
+        </div>
         @include('users.form')
         @include('employee.form')
         <div class="modal-footer">

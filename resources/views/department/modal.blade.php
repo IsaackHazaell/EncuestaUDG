@@ -15,15 +15,6 @@
               <label for="department_name">Departamento</label>
               <input type="text" class="form-control" name="department_name" id="department_name">
             </div>
-            
-            {{-- <div class="form-group col-md-6">
-                <label for="user_id">Seleccione el usuario</label>
-                <select class="form-control" name="user_id" id="user_id">
-                  @foreach($users as $user)
-                    <option value="{{$user->id}}" {{ isset($user) && $user->id == $user->name ? 'selected' : '' }}>{{$user->name}}</option>
-                  @endforeach
-                </select>
-            </div> --}}
       </div>
         <div class="modal-footer ">
           <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>

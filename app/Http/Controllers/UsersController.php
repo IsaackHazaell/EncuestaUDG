@@ -85,12 +85,6 @@ class UsersController extends Controller
            'user_id' => $user->id,
            'user_type' => 2,
              ]);
-      
-      
-      //  $type=Type::create([
-      //   'user_id' => $user->id,
-      //   'user_type' => $request->user_type,
-      //     ]);
 
         $employee=Employee::create([
                 'code' => $request->code,
@@ -98,20 +92,6 @@ class UsersController extends Controller
                 'appointment' => $request->appointment,
                 'user_id' => $user->id,
             ]);
-
-        //  if ($request->user_type==1) {
-        //    $department=Department::create([
-        //                'name' => $request->department_name ,
-        //            ]);
-        //    $headdepartment=HeadDepartment::create([
-        //                'department_id' => $department->id,
-        //                'employee_id' => $employee->id,
-        //            ]);
-        //   }else if($request->user_type==2) {
-        //     $teacher=Teacher::create([
-        //                'employee_id' => $employee->id,
-        //              ]);
-        // }
 
         $msg = [
           'title' => 'Creado!',

@@ -7,7 +7,6 @@ table = $('#departments_table').DataTable({
     "ajax": "{{route('departments.showTableD')}}",
     "columns": [
         {data: 'department_name'},
-        {data: 'user_name'},
         {data: 'btn'}
     ],
     "language": {
@@ -35,19 +34,16 @@ table = $('#departments_table').DataTable({
 //EDIT
 $('#edit').on('show.bs.modal', function (event) {
     var button = $(event.relatedTarget)
-    var id = button.data('iddepartment')
+    var department_id = button.data('department_id')
     var name = button.data('department_name')
-    var user_name = button.data('user_name')
-    console.log(user_name);
     var modal = $(this)
-    modal.find('.modal-body #id').val(id);
+    modal.find('.modal-body #id').val(department_id);
     modal.find('.modal-body #department_name').val(name);
-    modal.find('.modal-body #user_id').val(user_name);
 });
 
 //DELETE
 $('body').delegate('.status-department','click',function(){
-        id_department = $(this).attr('id_department');
+        id_department = $(this).attr('department_id');
         var csrf_token=$('meta[name="csrf-token"]').attr('content');
         swal({
             title: "Estás seguro?",

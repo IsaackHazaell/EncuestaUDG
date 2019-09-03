@@ -53,47 +53,68 @@
             </div>  
         </div>
     </div>
+    
+    @foreach ($types as $type)
+    
+      @if ($type->user_type == 1)
+          <div class="form-row" id="div_boss">
+            <div class="form-group col-md-6">
+                <label for="">Departamento del que es jefe</label>
+                <input type="text" class="form-control" name="jefe_departamento" id="jefe_departamento"readonly>
+            </div>
+          </div>          
+      @endif
+      @if ($type->user_type == 2)
+          <div class="form-row">
+            <div class="form-group col-md-6" id="div_profesor">
+                <label for="dep_profesor">Departamento al que pertenece </label>
+                <input class="form-control" name="dep_profesor" id="dep_profesor" readonly>
+            </div>
+          </div>
+      @endif        
+    @endforeach
+
 
     <div class=" form-group col-md-6">
       @foreach ($types as $type)
         <div class="form-check" style="display:inline-block" method="post">
           @if ($type->user_type == 0)
-          <input checked class="form-check-input" type="checkbox" id="user_director" name="user_director" onclick="return false;">
+          <input onchange="nameDepartment()" checked class="form-check-input" type="checkbox" id="user_director" name="user_director"  onchange="seleccionado()">
           <label class="form-check-label" for="user_director" style="padding-right:15px; padding-top:30px;">
             Director/Coordinador
-          </label>
+          </label>          
           @endif
           @if ($type->user_type == 1)
-          <input checked class="form-check-input" type="checkbox" id="user_jefe" name="user_jefe" onclick="return false;">
+          <input onchange="nameDepartment()" checked class="form-check-input" type="checkbox" id="user_jefe" name="user_jefe"  onchange="seleccionado()">
           <label class="form-check-label" for="user_jefe" style="padding-right:15px; padding-top:30px;">
             Jefe de departamento
           </label>
           @endif
           @if ($type->user_type == 2)
-            <input checked class="form-check-input" type="checkbox" id="user_profesor" name="user_profesor"  onclick="return false;">
+            <input onchange="nameDepartment()" checked class="form-check-input" type="checkbox" id="user_profesor" name="user_profesor"   onchange="seleccionado()">
             <label class="form-check-label" for="user_profesor" style="padding-right:15px; padding-top:30px;">
               Profesor
             </label>
-            @endif
-          </div>
+          @endif
+        </div>
       @endforeach
     </div>
-  <div class="form-row">
-    <div class="form-group col-md-12">
-      <button class="btn btn-success"
-      data-iduser="{{$user->id}}"
-      data-name="{{$user->name}}"
-      data-email="{{$user->email}}"
-      data-password="{{$user->password}}"
-      data-user_type="{{$type->user_type}}"
-      data-code="{{$employee->code}}"
-      data-contract="{{$employee->contract}}"
-      data-appointment="{{$employee->appointment}}""
-      data-toggle="modal" data-target="#edit"><i class="fa fa-edit"></i>Editar</button>
-    </div>
-  </div>
-</div>
 
+      <div class="form-row">
+        <div class="form-group col-md-12">
+          <button class="btn btn-success"
+          data-iduser="{{$user->id}}"
+          data-name="{{$user->name}}"
+          data-email="{{$user->email}}"
+          data-password="{{$user->password}}"
+          data-user_type="{{$type->user_type}}"
+          data-code="{{$employee->code}}"
+          data-contract="{{$employee->contract}}"
+          data-appointment="{{$employee->appointment}}""
+          data-toggle="modal" data-target="#edit"><i class="fa fa-edit"></i>Editar</button>
+        </div>
+      </div>
+  </div>
 @endsection
 
 @section('adminlte_js')

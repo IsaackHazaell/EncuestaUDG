@@ -8,7 +8,7 @@ use App\Users;
 use App\Employee;
 use DB;
 use Yajra\DataTables\DataTables;
-use App\HeadDepartment;
+
 
 class DepartmentController extends Controller
 {
@@ -27,18 +27,14 @@ class DepartmentController extends Controller
 
     public function showTableD()
     {
-        // $users = DB::table('head_departments')
-        //   ->select('departments.*','departments.id as department_id','departments.name as department_name','employees.*','employees.id as employee_id','users.*','users.id as user_id',
-        //            'users.name as user_name','head_departments.*','head_departments.id as head_department_id')
-        //   ->join('departments', 'departments.id', '=', 'head_departments.department_id')
-        //   ->join('employees', 'employees.id', '=', 'head_departments.employee_id')
-        //   ->join('users', 'users.id', '=', 'employees.user_id')
-        //   ->get();
+         $department = DB::table('departments')
+           ->select('departments.id as department_id','departments.name as department_name')
+           ->get();
 
-        //   return Datatables::of($users)
-        //   ->addColumn('btn', 'department.actions')
-        //   ->rawColumns(['btn'])
-        // ->make(true);
+           return Datatables::of($department)
+           ->addColumn('btn','department.actions')
+           ->rawColumns(['btn'])
+         ->make(true);
     }
 
     /**
@@ -60,27 +56,10 @@ class DepartmentController extends Controller
      */
     public function store(Request $request)
     {
-        //guardar empleado
-         $employee=Employee::create([
-                 'code' => $request->code,
-                 'contract' => $request->contract,
-                 'appointment' => $request->appointment,
-                 'user_id' => $request->user_id,
-             ]);
-            $type=Type::create([
-            'user_id' => $user->id,
-            'user_type' => $request->user_type,
-          ]);
-         //guardar dpto
-         $department=Department::create([
-                 'name' => $request->department,
-                 ]);
-         //guardar jefe dpto
-         $user = New HeadDepartment;
-         $user->employee_id = $employee->id;
-         $user->department_id = $department->id;
-         $user->save();
-
+        //dd($request);
+        Department::create([
+            'name' => $request->department_name,
+        ]);
 
          $msg = [
           'title' => 'Creado!',
@@ -88,7 +67,7 @@ class DepartmentController extends Controller
           'icon' => 'success'
           ];
 
-        return redirect('depertment')->with('message', $msg);
+        return redirect('department')->with('message', $msg);
     }
 
     /**
@@ -126,14 +105,10 @@ class DepartmentController extends Controller
       $department = Department::findOrFail($request->id);
       $department->name = $request->department_name;
       $department->save();
-      $user = Users::where('id',$request->user_id);
-      $headdepartment = HeadDepartment::findOrFail($department->department_id);
-      $headdepartment->employee_id = $employee->id;
-      $headdepartment->save();
 
 
       $msg = [
-        'title' => 'Modificado!',
+        'title' =>'Modificado!',
         'text' => 'Departamento modificado exitosamente.',
         'icon' => 'success'
         ];
@@ -147,8 +122,18 @@ class DepartmentController extends Controller
      * @param  \App\Department  $department
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Department $department)
+    public function destroy($department)
     {
-        //
-    }
+        $department=Department::findOrFail($department);
+        $department->delete();
+      
+      
+        $msg = [
+          'title' => 'Eliminado!',
+          'text' => 'Departamento eliminado exitosamente.',
+          'icon' => 'success'
+      ];
+  
+      return response()->json($msg);
+      }
 }

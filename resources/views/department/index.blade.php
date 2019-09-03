@@ -20,7 +20,6 @@
           <thead>
               <tr>
                   <th>Departamento</th>
-                  <th>Encargado</th>
                   <th width="120px">Acciones</th>
               </tr>
           </thead>
