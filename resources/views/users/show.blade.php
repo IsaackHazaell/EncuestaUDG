@@ -54,8 +54,7 @@
         </div>
     </div>
     
-    @foreach ($types as $type)
-    
+    @foreach ($types as $type)  
       @if ($type->user_type == 1)
           <div class="form-row" id="div_boss">
             <div class="form-group col-md-6">
@@ -74,24 +73,23 @@
       @endif        
     @endforeach
 
-
     <div class=" form-group col-md-6">
       @foreach ($types as $type)
         <div class="form-check" style="display:inline-block" method="post">
           @if ($type->user_type == 0)
-          <input onchange="nameDepartment()" checked class="form-check-input" type="checkbox" id="user_director" name="user_director"  onchange="seleccionado()">
+          <input onchange="nameDepartment()" checked class="form-check-input" type="checkbox" id="user_director" name="user_director" onclick="return false;" onchange="seleccionado()">
           <label class="form-check-label" for="user_director" style="padding-right:15px; padding-top:30px;">
             Director/Coordinador
           </label>          
           @endif
           @if ($type->user_type == 1)
-          <input onchange="nameDepartment()" checked class="form-check-input" type="checkbox" id="user_jefe" name="user_jefe"  onchange="seleccionado()">
+          <input onchange="nameDepartment()" checked class="form-check-input" type="checkbox" id="user_jefe" name="user_jefe" onclick="return false;" onchange="seleccionado()">
           <label class="form-check-label" for="user_jefe" style="padding-right:15px; padding-top:30px;">
             Jefe de departamento
           </label>
           @endif
           @if ($type->user_type == 2)
-            <input onchange="nameDepartment()" checked class="form-check-input" type="checkbox" id="user_profesor" name="user_profesor"   onchange="seleccionado()">
+            <input onchange="nameDepartment()" checked class="form-check-input" type="checkbox" id="user_profesor" name="user_profesor" onclick="return false;" onchange="seleccionado()">
             <label class="form-check-label" for="user_profesor" style="padding-right:15px; padding-top:30px;">
               Profesor
             </label>

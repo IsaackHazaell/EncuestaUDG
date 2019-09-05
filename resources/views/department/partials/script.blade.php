@@ -43,7 +43,7 @@ $('#edit').on('show.bs.modal', function (event) {
 
 //DELETE
 $('body').delegate('.status-department','click',function(){
-        id_department = $(this).attr('department_id');
+        id_department = $(this).attr('id_department');
         var csrf_token=$('meta[name="csrf-token"]').attr('content');
         swal({
             title: "Estás seguro?",
