@@ -60,7 +60,7 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-         
+        //dd($request->teacher); 
        $user= New Users;
        $user->name= $request->name;
        $user->password= $request->password;
@@ -68,30 +68,46 @@ class UsersController extends Controller
        $user->email= $request->email;
        $user->save();     
 
-       if (isset($_POST['user_director']))
-       $type=Type::create([
-           'user_id' => $user->id,
-           'user_type' => 0,
-             ]);
-
-       if (isset($_POST['user_jefe']))
-       $type=Type::create([
-           'user_id' => $user->id,
-           'user_type' => 1,
-             ]);
-
-       if (isset($_POST['user_profesor']))
-       $type=Type::create([
-           'user_id' => $user->id,
-           'user_type' => 2,
-             ]);
-
         $employee=Employee::create([
                 'code' => $request->code,
                 'contract' => $request->contract,
                 'appointment' => $request->appointment,
                 'user_id' => $user->id,
             ]);
+        
+            if ($request->director==1){
+              $type=Type::create([
+                'user_id' => $user->id,
+                'user_type' => 0,
+               ]);
+            }
+        
+            if ($request->bossdepartment==1){
+              $type=Type::create([
+                'user_id' => $user->id,
+                'user_type' => 1,
+              ]);
+              $headdepartment=HeadDepartment::create([
+                'employee_id' => $employee->id,
+                'department_id' => $department->id,
+              ]);
+            }
+            
+     
+            if ($request->teacher==1)
+            {
+              $type=Type::create([
+                'user_id' => $user->id,
+                'user_type' => 2,
+              ]);
+
+              $teacher=Teacher::create([
+                'employee_id' => $employee->id,
+              ]);
+            }
+           
+
+          
 
         $msg = [
           'title' => 'Creado!',

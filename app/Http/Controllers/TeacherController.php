@@ -6,6 +6,7 @@ use App\Teacher;
 use Illuminate\Http\Request;
 use App\Users;
 use App\Employee;
+use Illuminate\Support\Facades\Hash;
 use DB;
 use Yajra\DataTables\DataTables;
 use App\Type;
@@ -70,7 +71,7 @@ class TeacherController extends Controller
          
       $user= New Users;
       $user->name= $request->name;
-      $user->password= $request->password;
+      $user->password = Hash::make($request->password);
       $user->email= $request->email;
       $user->save();
 

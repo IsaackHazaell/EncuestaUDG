@@ -1,6 +1,6 @@
 @extends('admin.layout')
 @section('content')
-{{-- @include('users.modal') --}}
+@include('users.modal')
 
 <section class="content-header">
     <div class="form-group col-md-12">
@@ -59,7 +59,7 @@
           <div class="form-row" id="div_boss">
             <div class="form-group col-md-6">
                 <label for="">Departamento del que es jefe</label>
-                <input type="text" class="form-control" name="jefe_departamento" id="jefe_departamento"readonly>
+                <input type="text" class="form-control" name="jefe_departamento" id="jefe_departamento"readonly >
             </div>
           </div>          
       @endif

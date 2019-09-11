@@ -20,6 +20,23 @@
         </div>
         @include('users.form')
         @include('employee.form')
+        <div class=" form-group col-md-6" >
+          <div class="form-check" style="display:inline-block; padding-top:15px;" method="post">
+                <input onchange="nameDepartment()" class="form-check-input" type="checkbox" id="user_director" name="user_director" value="1">
+                <label class="form-check-label" for="user_director" style="padding-right:15px">
+                  Director/Coordinador
+                </label>
+                <input onchange="nameDepartment()" class="form-check-input" type="checkbox" id="user_profesor" name="user_profesor" value="1">
+                <label class="form-check-label" for="user_profesor" style="padding-right:15px">
+                  Profesor
+                </label>
+                <br>
+                <input onchange="nameDepartment()" class="form-check-input" type="checkbox" id="user_jefe" name="user_jefe" value="1">
+                <label class="form-check-label" for="user_jefe" style="padding-right:15px">
+                  Jefe de departamento
+                </label>              
+          </div>
+      </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
           <button type="submit" class="btn btn-primary">Guardar cambios</button>
