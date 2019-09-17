@@ -9,6 +9,7 @@ use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Hash;
 use App\Employee;
 use App\Department;
+use App\TeacherDepartment;
 use App\Teacher;
 use App\HeadDepartment;
 use App\Type;
@@ -107,10 +108,11 @@ class UsersController extends Controller
                 'employee_id' => $employee->id,
               ]);
 
-              foreach ($teacherdepartment) {
+              foreach ($request->teacherdepartment as $teacherdepartment) {
                 
-                $teacherdepartment=TeacherDepartment::create([
-                  'department_id' => $department->id,
+                $teacherdepartment_new=TeacherDepartment::create([
+                  'department_id' => $teacherdepartment,
+                  'teacher_id' => $teacher->id,
                 ]);
               }
             }
