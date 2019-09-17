@@ -9,4 +9,8 @@ class Employee extends Model
   protected $fillable = [
       'code', 'contract', 'appointment', 'user_id',
   ];
+  public function user()
+   {
+       return $this->belongsTo('App\Users');
+   }
 }

@@ -9,6 +9,7 @@ use App\Employee;
 use Illuminate\Support\Facades\Hash;
 use DB;
 use Yajra\DataTables\DataTables;
+use App\Department;
 use App\Type;
 
 
@@ -57,7 +58,8 @@ class TeacherController extends Controller
       ->join('types', 'types.user_id', '=', 'users.id')
       ->where('types.user_type','2')
       ->get();
-        return view('teacher.create')->with('users',$users);
+      $departments = Department::all();
+        return view('teacher.create')->with('users',$users)->with('departments',$departments);
     }
 
     /**

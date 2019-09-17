@@ -49,7 +49,8 @@ class UsersController extends Controller
      */
     public function create()
     {
-      return view('users.create');
+      $departments = Department::all();
+      return view('users.create', compact('departments'));
     }
 
     /**
@@ -89,13 +90,14 @@ class UsersController extends Controller
               ]);
               $headdepartment=HeadDepartment::create([
                 'employee_id' => $employee->id,
-                'department_id' => $department->id,
+                'department_id' => $request->jefe_departamento,
               ]);
             }
             
      
             if ($request->teacher==1)
             {
+              
               $type=Type::create([
                 'user_id' => $user->id,
                 'user_type' => 2,
@@ -104,6 +106,13 @@ class UsersController extends Controller
               $teacher=Teacher::create([
                 'employee_id' => $employee->id,
               ]);
+
+              foreach ($teacherdepartment) {
+                
+                $teacherdepartment=TeacherDepartment::create([
+                  'department_id' => $department->id,
+                ]);
+              }
             }
            
 

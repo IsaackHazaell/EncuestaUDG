@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Users;
 use Illuminate\Support\Facades\Hash;
 use App\Employee;
+use App\Teacher;
 use DB;
 use Yajra\DataTables\DataTables;
 use App\Department;
@@ -33,15 +34,19 @@ class HeadDepartmentController extends Controller
 
     public function showTableHD()
     {
+/*         dd("hola"); */
         $users = DB::table('head_departments')
-          ->select('head_departments.*','head_departments.id as head_departments_id','employees.*','employees.id as employee_id','users.*','users.id as user_id','types.user_type')
+          ->select('head_departments.*','head_departments.id as head_departments_id','employees.*',
+          'employees.id as employee_id','users.*','users.id as user_id','types.user_type',
+          'departments.id as department_id','departments.name as department_name')
           ->join('employees', 'employees.id', '=', 'head_departments.employee_id')
+          ->join('departments','departments.id','=','head_departments.department_id')
           ->join('users', 'users.id', '=', 'employees.user_id')
           ->join('types', 'types.user_id', '=', 'users.id')
           ->get();
 
           return Datatables::of($users)
-          ->addColumn('btn', 'head_departments.actions')
+          ->addColumn('btn', 'hdepartment.actions')
           ->rawColumns(['btn'])
         ->make(true);
     }
@@ -53,8 +58,11 @@ class HeadDepartmentController extends Controller
      */
     public function create()
     {
-        //
-    }
+        $teachers = Teacher::all();
+        //dd($teacher->employee->user);
+        $departments = Department::all();
+        return view('hdepartment.create')->with('departments',$departments)->with('teachers',$teachers);
+      }
 
     /**
      * Store a newly created resource in storage.
@@ -64,8 +72,22 @@ class HeadDepartmentController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+         
+             $hdepartment=HeadDepartment::create([
+                        'employee_id' => $request->employee_id,
+                        'department_id' => $request->department_id,
+              ]);
+  
+              
+  
+          $msg = [
+            'title' => 'Creado!',
+            'text' => 'Usuario creado exitosamente.',
+            'icon' => 'success'
+            ];
+  
+          return redirect('hdepartment')->with('message', $msg);
+      }
 
     /**
      * Display the specified resource.
@@ -107,8 +129,17 @@ class HeadDepartmentController extends Controller
      * @param  \App\HeadDepartment  $headDepartment
      * @return \Illuminate\Http\Response
      */
-    public function destroy(HeadDepartment $headDepartment)
+    public function destroy(HeadDepartment $hdepartment)
     {
-        //
-    }
+        // $hdepartment=HeadDepartment::findOrFail($headdepartment->id);
+        
+        $hdepartment->delete();
+        $msg = [
+            'title' => 'Eliminado!',
+            'text' => 'Usuario eliminado exitosamente.',
+            'icon' => 'success'
+        ];
+  
+      return response()->json($msg);
+      }
 }

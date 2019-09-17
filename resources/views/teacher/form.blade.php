@@ -1,10 +1,10 @@
-<div class="form-row">
-        <div class="form-group col-md-6" id="div_profesor">
-            <label for="dep_profesor">Seleccione el departamento al que pertenece </label>
-            <select class="form-control" name="dep_profesor" id="dep_profesor" >
-                <option value="">Director o Coordinador</option>
-                <option value="">Jefe de departamento</option>
-                <option value="">Profesor</option>
-            </select>
-        </div>
-    </div>
+<div class="form-row" id="div_profesor">
+  <div class="form-group col-md-6">
+    <label for="">Seleccione departamento al que pertenece</label>
+    <select class="form-control" name="teacherdepartment[]" id="teacherdepartment" multiple>
+      @foreach ($departments as $department)
+    <option value="{{ $department->id }}">{{ $department->name }}</option>
+      @endforeach
+    </select>
+  </div>
+</div>

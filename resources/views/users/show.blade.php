@@ -59,7 +59,7 @@
           <div class="form-row" id="div_boss">
             <div class="form-group col-md-6">
                 <label for="">Departamento del que es jefe</label>
-                <input type="text" class="form-control" name="jefe_departamento" id="jefe_departamento"readonly >
+            <input type="text" class="form-control" name="jefe_departamento" id="jefe_departamento"readonly value="">
             </div>
           </div>          
       @endif
@@ -67,7 +67,7 @@
           <div class="form-row">
             <div class="form-group col-md-6" id="div_profesor">
                 <label for="dep_profesor">Departamento al que pertenece </label>
-                <input class="form-control" name="dep_profesor" id="dep_profesor" readonly>
+                <input class="form-control" name="dep_profesor" id="dep_profesor" readonly value="">
             </div>
           </div>
       @endif        

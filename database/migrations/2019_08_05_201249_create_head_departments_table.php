@@ -21,8 +21,7 @@ class CreateHeadDepartmentsTable extends Migration
                   ->onDelete('cascade');
              $table->bigInteger('department_id')->unsigned();
              $table->foreign('department_id')
-                     ->references('id')->on('departments')
-                     ->onDelete('cascade');
+                   ->references('id')->on('departments');
             $table->timestamps();
         });
     }
