@@ -44,3 +44,8 @@ Route::get('showTableD','DepartmentController@showTableD')->name('departments.sh
 //HeadDepartments rout's
 Route::resource('hdepartment','HeadDepartmentController');
 Route::get('showTableHD','HeadDepartmentController@showTableHD')->name('hdepartments.showTableHD');
+
+//Poll rout's
+Route::resource('poll','PollController');
+Route::get('showTableP','PollController@showTableP')->name('poll.showTableP');
+
