@@ -18,8 +18,9 @@ class CreateGroupsTable extends Migration
             $table->biginteger('semester');
             $table->string('letter');
             $table->integer('turn')->unsigned();
+            $table->bigInteger('subject_id')->unsigned();
             $table->foreign('subject_id')
-                   ->references('id')->on('subjects');
+                  ->references('id')->on('subjects');
             $table->timestamps();
         });
     }
