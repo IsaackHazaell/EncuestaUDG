@@ -65,7 +65,7 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request->teacher); 
+        //dd($request); 
        $user= New Users;
        $user->name= $request->name;
        $user->password= $request->password;
@@ -111,13 +111,6 @@ class UsersController extends Controller
                 'employee_id' => $employee->id,
               ]);
 
-              foreach ($request->teacherdepartment as $teacherdepartment) {
-                
-                $teacherdepartment_new=TeacherDepartment::create([
-                  'department_id' => $teacherdepartment,
-                  'teacher_id' => $teacher->id,
-                ]);
-              }
               foreach ($request->teachersubject as $teachersubject) {
                 
                 $teachersubject_new=TeacherSubject::create([
@@ -151,9 +144,30 @@ class UsersController extends Controller
       
       $employee = DB::table('employees')->where('user_id', $user->id)->first();
       $types = Type::where('user_id',$user->id)->get();
+      $flag_hd=false;
+      $flag_t=false;
+      foreach ($types as $type) {
+        if($type->user_type == 1)
+          $flag_hd=true;
+        else 
+          $flag_t=true;
+      }
+      $headdepartment=null;
+      if ($flag_hd) {
+        $headdepartment = HeadDepartment::where('employee_id', $employee->id)->first();
+      }
+      $teachersubject=null;
+      if ($flag_t) {
+        $teacher=Teacher::where('employee_id',$employee->id)->first();
+        $teachersubject = TeacherSubject::where('teacher_id', $teacher->id)->get();
+      }
       //dd($type);
-        
-      return view('users.show')->with('user',$user)->with('types',$types)->with('employee',$employee);
+      $department = Department::all();
+      $subjects = Subject::all();
+      $teachersubjects = TeacherSubject::all();  
+      return view('users.show')->with('user',$user)->with('types',$types)->with('employee',$employee)
+      ->with('subjects',$subjects)->with('teachersubjects',$teachersubjects)->with('department',$department)
+      ->with('headdepartment',$headdepartment)->with('teachersubjects',$teachersubject);
     }
 
 

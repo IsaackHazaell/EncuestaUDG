@@ -58,18 +58,20 @@
       @if ($type->user_type == 1)
           <div class="form-row" id="div_boss">
             <div class="form-group col-md-6">
-                <label for="">Departamento del que es jefe</label>
-            <input type="text" class="form-control" name="jefe_departamento" id="jefe_departamento"readonly value="">
+              <label for="">Departamento del que es jefe</label>
+            <input type="text" class="form-control" name="jefe_departamento" id="jefe_departamento"readonly value="{{ $headdepartment->department->name }}">
             </div>
           </div>          
       @endif
       @if ($type->user_type == 2)
-          <div class="form-row">
-            <div class="form-group col-md-6" id="div_profesor">
-            <label for="dep_profesor">Departamento al que pertenece </label>
-            <select class="form-control" name="dep_profesor" id="dep_profesor" readonly multiple value="">
-            </div>
-          </div>
+      <div class="form-group col-md-6">
+          <label for="">Materias que imparte</label>
+          <select class="form-control" name="teachersubject[]" id="teachersubject" multiple readonly>
+          @foreach ($teachersubjects as $teachersubject)
+              <option value="{{ $teachersubject->id }}">{{ $teachersubject->subject->name }}</option>
+          @endforeach
+          </select>
+      </div>
       @endif        
     @endforeach
 

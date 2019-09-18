@@ -54,4 +54,9 @@
 
 @section('adminlte_js')
 @include('users.partials.script_create')
+<script>
+$("#teachersubject").select2({
+  theme: "classic"
+});
+</script>
 @stop
