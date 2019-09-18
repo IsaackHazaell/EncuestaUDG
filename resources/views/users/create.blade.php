@@ -15,6 +15,7 @@
         <a class="btn btn-primary btn-md addNew" style="float: right;" href="{{ url('users') }}"><b>Lista de usuarios</b></a><br><br>
       </div>
     </div>
+<div class="box-body">    
       @include('users.form')
       @include('employee.form')
       <div class="form-row" id="div_boss">
@@ -47,6 +48,7 @@
     <div class="form-group col-md-8">
       <button type="submit" class="btn btn-success">Guardar</button>
     </div>
+</div>    
 </form>
 @endsection
 

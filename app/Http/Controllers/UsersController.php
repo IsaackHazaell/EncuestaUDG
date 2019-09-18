@@ -12,6 +12,8 @@ use App\Department;
 use App\TeacherDepartment;
 use App\Teacher;
 use App\HeadDepartment;
+use App\Subject;
+use App\TeacherSubject;
 use App\Type;
 use Illuminate\Support\Facades\Storage;
 
@@ -51,7 +53,8 @@ class UsersController extends Controller
     public function create()
     {
       $departments = Department::all();
-      return view('users.create', compact('departments'));
+      $subjects = Subject::all();
+      return view('users.create', compact('departments'), compact('subjects'));
     }
 
     /**
@@ -115,6 +118,14 @@ class UsersController extends Controller
                   'teacher_id' => $teacher->id,
                 ]);
               }
+              foreach ($request->teachersubject as $teachersubject) {
+                
+                $teachersubject_new=TeacherSubject::create([
+                  'subject_id' => $teachersubject,
+                  'teacher_id' => $teacher->id,
+                ]);
+              }
+              
             }
            
 

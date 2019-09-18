@@ -30,5 +30,10 @@ class DatabaseSeeder extends Seeder
         $employee->contract = 'admin';
         $employee->appointment = 'admin';
         $employee->save();
+
+        $this->call([
+            DepartmentsTableSeeder::class,
+            SubjectsTableSeeder::class,
+        ]);
     }
 }

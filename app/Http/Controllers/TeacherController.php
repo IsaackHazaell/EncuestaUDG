@@ -59,7 +59,8 @@ class TeacherController extends Controller
       ->where('types.user_type','2')
       ->get();
       $departments = Department::all();
-        return view('teacher.create')->with('users',$users)->with('departments',$departments);
+      $subjects = Subject::all();
+        return view('teacher.create')->with('users',$users)->with('departments',$departments)->with('subjects',$subjects);
     }
 
     /**
