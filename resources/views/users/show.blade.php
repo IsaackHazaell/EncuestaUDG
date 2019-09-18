@@ -66,8 +66,8 @@
       @if ($type->user_type == 2)
           <div class="form-row">
             <div class="form-group col-md-6" id="div_profesor">
-                <label for="dep_profesor">Departamento al que pertenece </label>
-                <input class="form-control" name="dep_profesor" id="dep_profesor" readonly value="">
+            <label for="dep_profesor">Departamento al que pertenece </label>
+            <select class="form-control" name="dep_profesor" id="dep_profesor" readonly multiple value="">
             </div>
           </div>
       @endif        
