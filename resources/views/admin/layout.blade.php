@@ -224,8 +224,8 @@ desired effect
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="{{ url('teacher') }}">Lista de encuestas</a></li>
-            <li><a href="{{ url('teacher/create') }}">Dar de alta encuesta</a></li>
+            <li><a href="{{ url('poll') }}">Lista de encuestas</a></li>
+            <li><a href="{{ url('poll/create') }}">Dar de alta encuesta</a></li>
           </ul>
         </li>
 
