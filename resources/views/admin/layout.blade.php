@@ -159,14 +159,14 @@ desired effect
         <li class="header">Menú</li>
 
         <li class="treeview">
-          <a href="#"><i class="fa fa-user-circle"></i> <span>Usuarios</span>
+          <a href="#"><i class="fa fa-user-circle"></i> <span>Docentes</span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="{{ url('users') }}">Lista de usuarios</a></li>
-            <li><a href="{{ url('users/create') }}">Dar de alta usuario</a></li>
+            <li><a href="{{ url('users') }}">Lista de docentes</a></li>
+            <li><a href="{{ url('users/create') }}">Agregar docente</a></li>
           </ul>
         </li>
 
@@ -183,7 +183,7 @@ desired effect
         </li> -->
         
         <li class="treeview">
-          <a href="#"><i class="fa fa-address-book-o"></i> <span>Jefes</span>
+          <a href="#"><i class="fa fa-address-book-o"></i> <span>Jefes de departamento</span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>

@@ -65,7 +65,10 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request); 
+        $validatedData = $request->validate([
+          'email' => 'unique:users',
+          'name' => 'required',
+      ]);
        $user= New Users;
        $user->name= $request->name;
        $user->password= $request->password;
@@ -111,13 +114,13 @@ class UsersController extends Controller
                 'employee_id' => $employee->id,
               ]);
 
-              foreach ($request->teachersubject as $teachersubject) {
-                
-                $teachersubject_new=TeacherSubject::create([
-                  'subject_id' => $teachersubject,
-                  'teacher_id' => $teacher->id,
-                ]);
-              }
+              if($request->teachersubject != null)
+                foreach ($request->teachersubject as $teachersubject) {
+                  $teachersubject_new=TeacherSubject::create([
+                    'subject_id' => $teachersubject,
+                    'teacher_id' => $teacher->id,
+                  ]);
+                }
               
             }
            
@@ -156,18 +159,17 @@ class UsersController extends Controller
       if ($flag_hd) {
         $headdepartment = HeadDepartment::where('employee_id', $employee->id)->first();
       }
-      $teachersubject=null;
+      $teachersubjects=null;
       if ($flag_t) {
         $teacher=Teacher::where('employee_id',$employee->id)->first();
-        $teachersubject = TeacherSubject::where('teacher_id', $teacher->id)->get();
+        $teachersubjects = TeacherSubject::where('teacher_id', $teacher->id)->get();
       }
       
       $department = Department::all();
       $subjects = Subject::all();
-      $teachersubjects = TeacherSubject::all();  
       return view('users.show')->with('user',$user)->with('types',$types)->with('employee',$employee)
-      ->with('subjects',$subjects)->with('teachersubjects',$teachersubjects)->with('department',$department)
-      ->with('headdepartment',$headdepartment)->with('teachersubjects',$teachersubject);
+      ->with('subjects',$subjects)->with('teachersubjects',$teachersubjects)->with('departments',$department)
+      ->with('headdepartment',$headdepartment);
     }
 
 
@@ -193,27 +195,57 @@ class UsersController extends Controller
      */
     public function update(Request $request)
     {
+      //dd($request);
       $user = Users::findOrFail($request->id);
-  
-        $user->name = $request->name;
-        if($request->password != $user->password )
-      {
+      $user->name = $request->name;
+      if($request->password != null )
         $user->password = Hash::make($request->password);
-      }
-        $user->email = $request->email;
-
+      $user->email = $request->email;
       if($request->hasFile('image'))
       {
           if($user->image != 'user.png'){
               Storage::delete($user->image);
           }
           $user->image =  $request->file('image')->store('public');
-      }      
+      }
       $user->save();
 
-      $type = Type::where('user_id',$request->id)->firstOrFail();
+      $employee=Employee::where('user_id',$user->id)->first();
+      $employee->code = $request->code;
+      $employee->contract = $request->contract;
+      $employee->appointment = $request->appointment;
+      $employee->save();
+
+      if($request->type_head_department == "on")
+      {
+        $head_department = HeadDepartment::where('employee_id',$employee->id)->first();
+        $head_department->delete();
+        $headdepartment=HeadDepartment::create([
+          'employee_id' => $employee->id,
+          'department_id' => $request->department_id,
+        ]);
+        
+      }
+
+      if($request->type_teacher == "on")
+      {
+        $teacher = Teacher::where('employee_id',$employee->id)->first();
+        $teacher_subjects = TeacherSubject::where('teacher_id',$teacher->id)->get();
+        foreach($teacher_subjects as $teacher_subject)
+          $teacher_subject->delete();
+        foreach ($request->teachersubject as $teachersubject) {
+          $teachersubject_new=TeacherSubject::create([
+            'subject_id' => $teachersubject,
+            'teacher_id' => $teacher->id,
+          ]);
+        }
+      }
+
+      /* $type = Type::where('user_id',$request->id)->firstOrFail();
       $type->user_type = $request->user_type;
-      $type->save();
+      $type->save(); */
+
+
 
       $msg = [
         'title' => 'Modificado!',

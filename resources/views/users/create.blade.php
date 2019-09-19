@@ -8,6 +8,16 @@
   </h1>
 </section>
 
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
 <form action="{{url('/users')}}" method="post" name="fcreate">
   {{csrf_field()}}
     <div class="form-row">
@@ -32,15 +42,15 @@
       <div class=" form-group col-md-12" >
           <div class="form-check" style="display:inline-block" method="post">
                 <input onchange="nameDepartment()" class="form-check-input" type="checkbox" id="director" name="director" value="1">
-                <label class="form-check-label" for="user_director" style="padding-right:15px">
+                <label class="form-check-label" for="director" style="padding-right:15px">
                   Director/Coordinador
                 </label>
                 <input onchange="nameDepartment()" class="form-check-input" type="checkbox" id="bossdepartment" name="bossdepartment" value="1">
-                <label class="form-check-label" for="user_jefe" style="padding-right:15px">
+                <label class="form-check-label" for="bossdepartment" style="padding-right:15px">
                   Jefe de departamento
                 </label>
                 <input onchange="nameDepartment()" class="form-check-input" type="checkbox" id="teacher" name="teacher" value="1">
-                <label class="form-check-label" for="user_profesor" style="padding-right:15px">
+                <label class="form-check-label" for="teacher" style="padding-right:15px">
                   Profesor
                 </label>
           </div>

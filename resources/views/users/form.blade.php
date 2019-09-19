@@ -1,21 +1,19 @@
-
-
   <div class="form-row">
         <div class="form-group col-md-6">
           <label for="name">{{ 'Nombre' }}</label>
-          <input type="text" class="form-control" name="name" id="name" value="">
+          <input type="text" class="form-control" name="name" id="name" value="" required>
         </div>
   </div>
 
   <div class="form-row">
         <div class="form-group col-md-6">
           <label for="mail">{{ 'Correo' }}</label>
-          <input type="email" class="form-control" name="email" id="email" value="">
+          <input type="email" class="form-control" name="email" id="email" value="" required>
         </div>
 
         <div class="form-group col-md-6">
           <label for="password">{{ 'Contraseña' }}</label>
-          <input type="password" class="form-control" required name="password" id="password" value="">
+          <input type="password" class="form-control" required name="password" id="password" value="" required>
         </div>
   </div>
   
