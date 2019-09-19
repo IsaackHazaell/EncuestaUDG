@@ -12,15 +12,23 @@ class DepartmentsTableSeeder extends Seeder
     public function run()
     {
         $department = new App\Department();
-        $department->name = 'Ciencias exactas';
+        $department->name = 'Ciencias Naturales de la Salud';
         $department->save();
 
         $department = new App\Department();
-        $department->name = 'Español';
+        $department->name = 'Humanidades y Sociadad';
         $department->save();
 
         $department = new App\Department();
-        $department->name = 'Segunda Lengua';
+        $department->name = 'Comunicacion y aprendizaje';
+        $department->save();
+
+        $department = new App\Department();
+        $department->name = 'Matemáticas';
+        $department->save();
+
+        $department = new App\Department();
+        $department->name = 'Sociotecnologías';
         $department->save();
     }
 }
