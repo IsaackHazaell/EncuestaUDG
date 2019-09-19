@@ -149,7 +149,7 @@ class UsersController extends Controller
       foreach ($types as $type) {
         if($type->user_type == 1)
           $flag_hd=true;
-        else 
+        else if($type->user_type == 2)
           $flag_t=true;
       }
       $headdepartment=null;
@@ -161,7 +161,7 @@ class UsersController extends Controller
         $teacher=Teacher::where('employee_id',$employee->id)->first();
         $teachersubject = TeacherSubject::where('teacher_id', $teacher->id)->get();
       }
-      //dd($type);
+      
       $department = Department::all();
       $subjects = Subject::all();
       $teachersubjects = TeacherSubject::all();  
@@ -202,7 +202,7 @@ class UsersController extends Controller
       }
         $user->email = $request->email;
 
-    if($request->hasFile('image'))
+      if($request->hasFile('image'))
       {
           if($user->image != 'user.png'){
               Storage::delete($user->image);

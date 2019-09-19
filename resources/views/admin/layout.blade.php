@@ -170,7 +170,7 @@ desired effect
           </ul>
         </li>
 
-        <li class="treeview">
+        <!-- <li class="treeview">
           <a href="#"><i class="fa fa-id-card"></i> <span>Profesores</span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
@@ -180,7 +180,7 @@ desired effect
             <li><a href="{{ url('teacher') }}">Lista de profesores</a></li>
             <li><a href="{{ url('teacher/create') }}">Dar de alta profesor</a></li>
           </ul>
-        </li>
+        </li> -->
         
         <li class="treeview">
           <a href="#"><i class="fa fa-address-book-o"></i> <span>Jefes</span>
