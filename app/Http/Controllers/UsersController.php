@@ -195,7 +195,6 @@ class UsersController extends Controller
      */
     public function update(Request $request)
     {
-      //dd($request);
       $user = Users::findOrFail($request->id);
       $user->name = $request->name;
       if($request->password != null )
@@ -220,6 +219,10 @@ class UsersController extends Controller
       {
         $head_department = HeadDepartment::where('employee_id',$employee->id)->first();
         $head_department->delete();
+
+        $head_department = HeadDepartment::where('department_id',$request->department_id)->first();
+        $head_department->delete();
+
         $headdepartment=HeadDepartment::create([
           'employee_id' => $employee->id,
           'department_id' => $request->department_id,
