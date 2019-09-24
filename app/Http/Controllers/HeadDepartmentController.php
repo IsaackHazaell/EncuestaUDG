@@ -72,17 +72,27 @@ class HeadDepartmentController extends Controller
      */
     public function store(Request $request)
     {
-         
-             $hdepartment=HeadDepartment::create([
-                        'employee_id' => $request->employee_id,
-                        'department_id' => $request->department_id,
-              ]);
-  
-              
-  
+            //dd($request);
+            $employee=Employee::find($request->employee_id); 
+
+            $head_department = HeadDepartment::where('employee_id',$employee->id)->first();
+            if($head_department != null){
+                $head_department->delete();
+            };
+            
+            $head_department = HeadDepartment::where('department_id',$request->department_id)->first();
+            if($head_department != null){
+                $head_department->delete();
+            };
+    
+            $headdepartment=HeadDepartment::create([
+              'employee_id' => $employee->id,
+              'department_id' => $request->department_id,
+            ]);
+
           $msg = [
             'title' => 'Creado!',
-            'text' => 'Usuario creado exitosamente.',
+            'text' => 'Jefe de departamento creado exitosamente.',
             'icon' => 'success'
             ];
   
