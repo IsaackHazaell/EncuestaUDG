@@ -1,7 +1,7 @@
 
     <div class="form-group col-md-6">
         <label for="employee_id">Seleccione un profesor</label>
-        <select class="form-control" name="employee_id" id="employee_id" >
+        <select class="form-control" name="employee_id[]" id="employee_id" multiple>
           @foreach ($teachers as $teacher)
         <option value="{{ $teacher->employee->id }}">{{ $teacher->employee->user->name }}</option>
           @endforeach

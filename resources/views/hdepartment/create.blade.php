@@ -23,3 +23,10 @@
     </div>
 </form>
 @endsection
+
+@section('adminlte_js')
+<script>
+$("#employee_id").select2({
+});
+</script>
+@stop

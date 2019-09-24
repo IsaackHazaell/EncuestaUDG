@@ -21,7 +21,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         apply the skin class to the body tag so the changes take effect. -->
   <link rel="stylesheet" href="{{asset('adminlte/css/skins/skin-blue.min.css')}}">
 
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet" />
+  <link href="{{asset('https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/css/select2.min.css')}}" rel="stylesheet" />
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -81,6 +81,12 @@ desired effect
       <!-- Navbar Right Menu -->
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-fw fa-bell-o"></i>Notificaciones <span class="badge">0</span></a>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="#"><i class="fa fa-fw fa-tag"></i><span class="badge">label text</span> Item </a></li>
+                </ul>
+            </li>
           <!-- User Account Menu -->
           <li class="dropdown user user-menu">
             <!-- Menu Toggle Button -->
@@ -132,7 +138,7 @@ desired effect
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="{{ Storage::url(Auth::user()->image) }}" class="img-circle" alt="User Image">
+          <img src="{{ Storage::url(Auth::user()->image) }}">
         </div>
         <div class="pull-left info">
           <p>{{ Auth::user()->name }}</p>
@@ -267,7 +273,7 @@ desired effect
 <!-- Sweet alert-->
 <script src="{{asset('https://unpkg.com/sweetalert/dist/sweetalert.min.js')}}"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
+<script src="{{asset('https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js')}}"></script>
 
 @yield('adminlte_js')
 
