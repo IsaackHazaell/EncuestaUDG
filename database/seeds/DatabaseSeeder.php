@@ -35,6 +35,7 @@ class DatabaseSeeder extends Seeder
             DepartmentsTableSeeder::class,
             SubjectsTableSeeder::class,
             TeachersTableSeeder::class,
+            GroupsTableSeeder::class,
         ]);
     }
 }
