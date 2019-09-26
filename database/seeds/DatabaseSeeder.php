@@ -33,9 +33,9 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             DepartmentsTableSeeder::class,
-            SubjectsTableSeeder::class,
             TeachersTableSeeder::class,
             GroupsTableSeeder::class,
+            SubjectsTableSeeder::class,
         ]);
     }
 }

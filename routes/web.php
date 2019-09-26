@@ -49,3 +49,7 @@ Route::get('showTableHD','HeadDepartmentController@showTableHD')->name('hdepartm
 Route::resource('poll','PollController');
 Route::get('showTableP','PollController@showTableP')->name('poll.showTableP');
 
+//Groups rout's
+Route::resource('group','GroupController');
+Route::get('showTableG','GroupController@showTableG')->name('groups.showTableG');
+

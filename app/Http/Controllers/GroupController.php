@@ -4,6 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Group;
 use Illuminate\Http\Request;
+use DB;
+use Yajra\DataTables\DataTables;
+use App\Employee;
+use App\Department;
+use App\TeacherDepartment;
+use App\GroupTeacher;
+use App\Teacher;
+use App\GroupSubject;
+use App\HeadDepartment;
+use App\Subject;
+use App\TeacherSubject;
+use Illuminate\Support\Facades\Storage;
 
 class GroupController extends Controller
 {
@@ -24,8 +36,12 @@ class GroupController extends Controller
      */
     public function create()
     {
-        //
-    }
+        $groupsubjects = GroupSubject::all();
+        $teachersubjects = TeacherSubject::all();
+        $groups = Group::all();
+        return view('group.create')->with('groups',$groups)->with('groupsubjects',$groupsubjects)
+        ->with('teachersubjects',$teachersubjects);
+      }
 
     /**
      * Store a newly created resource in storage.
@@ -35,7 +51,16 @@ class GroupController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //dd($request);
+        $groupsubjects = GroupSubject::all();
+        $teachersubjects = TeacherSubject::all();
+        $groups = Group::all();
+        $group_teacher = GroupTeacher::create([
+                'groupsubject_id' => $request->groupsubject_id,
+                'teachersubject_id' => $request->teachersubject_id,
+        ]);
+        return view('group.create')->with('groups',$groups)->with('groupsubjects',$groupsubjects)
+        ->with('teachersubjects',$teachersubjects);
     }
 
     /**

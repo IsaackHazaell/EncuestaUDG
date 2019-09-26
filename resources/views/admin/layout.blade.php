@@ -175,18 +175,6 @@ desired effect
             <li><a href="{{ url('users/create') }}">Agregar docente</a></li>
           </ul>
         </li>
-
-        <!-- <li class="treeview">
-          <a href="#"><i class="fa fa-id-card"></i> <span>Profesores</span>
-            <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="{{ url('teacher') }}">Lista de profesores</a></li>
-            <li><a href="{{ url('teacher/create') }}">Dar de alta profesor</a></li>
-          </ul>
-        </li> -->
         
         <li class="treeview">
           <a href="#"><i class="fa fa-address-book-o"></i> <span>Jefes de departamento</span>
@@ -197,6 +185,18 @@ desired effect
           <ul class="treeview-menu">
             <li><a href="{{ url('hdepartment') }}">Lista de Jefes</a></li>
             <li><a href="{{ url('hdepartment/create') }}">Dar de alta jefe</a></li>
+          </ul>
+        </li>
+
+        <li class="treeview">
+          <a href="#"><i class="fa fa-id-card"></i> <span>Grupos</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{ url('group') }}">Lista de grupos</a></li>
+            <li><a href="{{ url('group/create') }}">Dar de alta grupo</a></li>
           </ul>
         </li>
 

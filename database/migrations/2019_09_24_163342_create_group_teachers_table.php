@@ -15,9 +15,9 @@ class CreateGroupTeachersTable extends Migration
     {
         Schema::create('group_teachers', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('group_id')->unsigned();
-            $table->foreign('group_id')
-                  ->references('id')->on('groups');
+            $table->bigInteger('groupsubject_id')->unsigned();
+            $table->foreign('groupsubject_id')
+                  ->references('id')->on('group_subjects');
             $table->bigInteger('teachersubject_id')->unsigned();
             $table->foreign('teachersubject_id')
                   ->references('id')->on('teacher_subjects');

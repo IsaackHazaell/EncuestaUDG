@@ -10,7 +10,7 @@ class Group extends Model
         'semester', 'letter', 'turn', 'subject_id',
     ];
 
-    // public function user()
+    // public function ()
     // {
     //    return $this->belongsTo('App\Users');
     // }
