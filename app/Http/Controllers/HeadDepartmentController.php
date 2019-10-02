@@ -48,7 +48,7 @@ class HeadDepartmentController extends Controller
           return Datatables::of($users)
           ->addColumn('btn', 'hdepartment.actions')
           ->rawColumns(['btn'])
-        ->make(true);
+          ->make(true);
     }
 
     /**
