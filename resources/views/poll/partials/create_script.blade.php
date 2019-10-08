@@ -1,4 +1,5 @@
 <script>
+    //agregar input
     function addinput(){
         this.preventDefault();
         cosole.log('hola');
