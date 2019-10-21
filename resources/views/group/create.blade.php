@@ -10,7 +10,7 @@
 
 <form action="{{url('group')}}" method="post">
   {{csrf_field()}}
-<div class="box-body">
+  <div class="box-body">
     <div class="form-row">
       <div class="form-group col-md-12">
         <a class="btn btn-primary btn-md addNew" style="float: right;" href="{{ url('group') }}"><b>Lista de grupos</b></a><br><br>
@@ -21,13 +21,14 @@
         <button type="submit" class="btn btn-success">Guardar</button>
       </div>
     </div>
-    </div>
+  </div>
 </form>
 @endsection
 @section('adminlte_js')
-<script>
-    $("#group_id").select2({});
-    $("#groupsuebject_id").select2({});
-    $("#teachersubject_id").select2({});
+    <script>
+      $("#group_id").select2({});
+      $("#groupsuebject_id").select2({});
+      $("#teachersubject_id").select2({});
     </script>
+    @include ('group.partials.script')
 @stop

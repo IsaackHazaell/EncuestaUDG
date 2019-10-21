@@ -38,7 +38,19 @@ class GroupController extends Controller
     {
         $groupsubjects = GroupSubject::all();
         $teachersubjects = TeacherSubject::all();
+        //dd($teachersubjects[0]->teacher->employee->user);
         $groups = Group::all();
+        foreach($groups as $group)
+        {
+            if ($group->turn == 0)
+            {
+                $group->turn = "M";
+            }
+            else
+            {
+                $group->turn = "V";
+            }
+        }
         return view('group.create')->with('groups',$groups)->with('groupsubjects',$groupsubjects)
         ->with('teachersubjects',$teachersubjects);
       }

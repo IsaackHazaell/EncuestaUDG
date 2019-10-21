@@ -53,3 +53,7 @@ Route::get('showTableP','PollController@showTableP')->name('poll.showTableP');
 Route::resource('group','GroupController');
 Route::get('showTableG','GroupController@showTableG')->name('groups.showTableG');
 
+//Constancy rout's
+Route::resource('constancy','ConstancyController');
+Route::get('showTableC','ConstancyController@showTableC')->name('constancys.showTableC');
+

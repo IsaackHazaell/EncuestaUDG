@@ -207,8 +207,8 @@ desired effect
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="{{ url('teacher') }}">Lista de constancias</a></li>
-            <li><a href="{{ url('teacher/create') }}">Dar de alta constancia</a></li>
+            <li><a href="{{ url('constancy') }}">Lista de constancias</a></li>
+            <li><a href="{{ url('constancy/create') }}">Dar de alta constancia</a></li>
           </ul>
         </li>
 

@@ -507,56 +507,6 @@ class SubjectsTableSeeder extends Seeder
         $group_subject->group_id = '20';
         $group_subject->save();
 
-        $group_subject = new App\GroupSubject();
-        $group_subject->subject_id = $subject->id;
-        $group_subject->group_id = '11';
-        $group_subject->save();
-
-        $group_subject = new App\GroupSubject();
-        $group_subject->subject_id = $subject->id;
-        $group_subject->group_id = '12';
-        $group_subject->save();
-
-        $group_subject = new App\GroupSubject();
-        $group_subject->subject_id = $subject->id;
-        $group_subject->group_id = '13';
-        $group_subject->save();
-
-        $group_subject = new App\GroupSubject();
-        $group_subject->subject_id = $subject->id;
-        $group_subject->group_id = '14';
-        $group_subject->save();
-
-        $group_subject = new App\GroupSubject();
-        $group_subject->subject_id = $subject->id;
-        $group_subject->group_id = '15';
-        $group_subject->save();
-
-        $group_subject = new App\GroupSubject();
-        $group_subject->subject_id = $subject->id;
-        $group_subject->group_id = '16';
-        $group_subject->save();
-
-        $group_subject = new App\GroupSubject();
-        $group_subject->subject_id = $subject->id;
-        $group_subject->group_id = '17';
-        $group_subject->save();
-
-        $group_subject = new App\GroupSubject();
-        $group_subject->subject_id = $subject->id;
-        $group_subject->group_id = '18';
-        $group_subject->save();
-
-        $group_subject = new App\GroupSubject();
-        $group_subject->subject_id = $subject->id;
-        $group_subject->group_id = '19';
-        $group_subject->save();
-
-        $group_subject = new App\GroupSubject();
-        $group_subject->subject_id = $subject->id;
-        $group_subject->group_id = '20';
-        $group_subject->save();
-
         $subject = new App\Subject();
         $subject->name = 'Análisis y argumento';
         $subject->department_id = '3';
@@ -1240,56 +1190,6 @@ class SubjectsTableSeeder extends Seeder
         $subject->name = 'Apreciación del arte';
         $subject->department_id = '2';
         $subject->save();
-
-        $group_subject = new App\GroupSubject();
-        $group_subject->subject_id = $subject->id;
-        $group_subject->group_id = '1';
-        $group_subject->save();
-
-        $group_subject = new App\GroupSubject();
-        $group_subject->subject_id = $subject->id;
-        $group_subject->group_id = '2';
-        $group_subject->save();
-
-        $group_subject = new App\GroupSubject();
-        $group_subject->subject_id = $subject->id;
-        $group_subject->group_id = '3';
-        $group_subject->save();
-
-        $group_subject = new App\GroupSubject();
-        $group_subject->subject_id = $subject->id;
-        $group_subject->group_id = '4';
-        $group_subject->save();
-
-        $group_subject = new App\GroupSubject();
-        $group_subject->subject_id = $subject->id;
-        $group_subject->group_id = '5';
-        $group_subject->save();
-
-        $group_subject = new App\GroupSubject();
-        $group_subject->subject_id = $subject->id;
-        $group_subject->group_id = '6';
-        $group_subject->save();
-
-        $group_subject = new App\GroupSubject();
-        $group_subject->subject_id = $subject->id;
-        $group_subject->group_id = '7';
-        $group_subject->save();
-
-        $group_subject = new App\GroupSubject();
-        $group_subject->subject_id = $subject->id;
-        $group_subject->group_id = '8';
-        $group_subject->save();
-
-        $group_subject = new App\GroupSubject();
-        $group_subject->subject_id = $subject->id;
-        $group_subject->group_id = '9';
-        $group_subject->save();
-
-        $group_subject = new App\GroupSubject();
-        $group_subject->subject_id = $subject->id;
-        $group_subject->group_id = '10';
-        $group_subject->save();
 
         $group_subject = new App\GroupSubject();
         $group_subject->subject_id = $subject->id;
