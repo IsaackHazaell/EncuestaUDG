@@ -195,20 +195,7 @@ desired effect
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="{{ url('group') }}">Lista de grupos</a></li>
             <li><a href="{{ url('group/create') }}">Dar de alta grupo</a></li>
-          </ul>
-        </li>
-
-        <li class="treeview">
-          <a href="#"><i class="fa fa-file-text-o"></i> <span>Constancias</span>
-            <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="{{ url('constancy') }}">Lista de constancias</a></li>
-            <li><a href="{{ url('constancy/create') }}">Dar de alta constancia</a></li>
           </ul>
         </li>
 
@@ -221,6 +208,18 @@ desired effect
           <ul class="treeview-menu">
             <li><a href="{{ url('poll') }}">Lista de encuestas</a></li>
             <li><a href="{{ url('poll/create') }}">Dar de alta encuesta</a></li>
+          </ul>
+        </li>
+
+        <li class="treeview">
+          <a href="#"><i class="fa fa-file-text-o"></i> <span>Constancias</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{ url('constancy') }}">Lista de constancias</a></li>
+            <li><a href="{{ url('constancy/create') }}">Dar de alta constancia</a></li>
           </ul>
         </li>
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Poll;
+use App\Question;
 use Illuminate\Http\Request;
 use DB;
 use Yajra\DataTables\DataTables;
@@ -30,6 +31,20 @@ class PollController extends Controller
         return view('poll.index');
     }
 
+    public function showTableP()
+    {
+        $polls = DB::table('polls')
+          ->select('polls.*','polls.id poll_id','poll.*','poll.id as poll_id')
+          ->join('poll','poll.poll_id','polls.id')
+          ->get();
+          
+          return Datatables::of($polls)
+          ->addColumn('btn', 'polls.actions')
+          ->rawColumns(['btn'])
+          ->make(true);
+    }
+
+
     /**
      * Show the form for creating a new resource.
      *
@@ -38,7 +53,30 @@ class PollController extends Controller
     public function create()
     {
         $polls = Poll::all();
+        foreach($polls as $poll)
+        {
+            if ($poll->type == 0)
+            {
+                $poll->type = "5 respuestas";
+            }
+            else
+            {
+                $poll->type = "2 respuestas";
+            }
+        }
+
         $groups = Group::all();
+        foreach($groups as $group)
+        {
+            if ($group->turn == 0)
+            {
+                $group->turn = "M";
+            }
+            else
+            {
+                $group->turn = "V";
+            }
+        }
         return view('poll.create', compact('polls'), compact('groups'));
       }
 
@@ -50,7 +88,26 @@ class PollController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $poll = Poll::create([
+            'name' => $request->name,
+            'type' => $request->poll_type,
+        ]);
+        foreach($request->poll_group as $poll_group){
+            $poll->groups()->attach($poll_group);
+        }
+        foreach($request->question as $question){
+            $question = Question::create([
+                'poll_id' => $poll->id,
+                'question' => $question,
+            ]);
+        }
+
+        $msg = [
+            'title' => 'Encuesta creada correctamente',
+            'text' => 'Continuar..',
+            'icon' => 'success',
+        ];
+        return redirect()->route('poll.index')->with('message', $msg);
     }
 
     /**

@@ -10,8 +10,8 @@ class Group extends Model
         'semester', 'letter', 'turn', 'subject_id',
     ];
 
-    // public function ()
-    // {
-    //    return $this->belongsTo('App\Users');
-    // }
+    public function polls()
+    {
+       return $this->belongsToMany('App\Polls');
+    }
 }

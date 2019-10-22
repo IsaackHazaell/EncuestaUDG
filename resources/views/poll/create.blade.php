@@ -8,7 +8,7 @@
   </h1>
 </section>
 
-<form action="{{url('teacher')}}" method="post">
+<form action="{{url('poll')}}" method="post">
   {{csrf_field()}}
 <div class="box-body">
     <div class="form-row">
@@ -17,7 +17,7 @@
       </div>
       @include('poll.form')
       <div class="form-group col-md-8">
-        <button type="submit" class="btn btn-success">Guardar</button>
+        <button type="submit" name="submit" id="submit" class="btn btn-success">Guardar</button>
       </div>
     </div>
     </div>
@@ -26,8 +26,9 @@
 
 @section('adminlte_js')
 <script>
-$("#poll_group").select2({
-  theme: "classic"
-});
+  $("#poll_group").select2({
+    theme: "classic"
+  });
 </script>
+@include('poll.partials.script')
 @stop
