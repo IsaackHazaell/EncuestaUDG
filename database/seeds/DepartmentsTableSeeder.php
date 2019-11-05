@@ -16,7 +16,7 @@ class DepartmentsTableSeeder extends Seeder
         $department->save();
 
         $department = new App\Department();
-        $department->name = 'Humanidades y Sociadad';
+        $department->name = 'Humanidades y Sociedad';
         $department->save();
 
         $department = new App\Department();

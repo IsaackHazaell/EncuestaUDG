@@ -37,7 +37,6 @@ $('#edit').on('show.bs.modal', function (event) {
     var id = button.data('headdepartmentid')
     var code = button.data('code')
     var name = button.data('name')
-    console.log(name);
     var appointment = button.data('appointment')
     var contract = button.data('contract')
     var departmentname = button.data('department_name')

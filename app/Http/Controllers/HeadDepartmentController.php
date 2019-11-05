@@ -34,7 +34,6 @@ class HeadDepartmentController extends Controller
 
     public function showTableHD()
     {
-/*         dd("hola"); */
         $users = DB::table('head_departments')
           ->select('head_departments.*','head_departments.id as head_departments_id','employees.*',
           'employees.id as employee_id','users.*','users.id as user_id','types.user_type',

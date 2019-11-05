@@ -8,10 +8,9 @@
 <div class="form-row">
     <div class="form-group col-md-6">
       <label for=poll_type>Seleccione tipo de encuesta</label>
-      <select class="form-control" name="poll_type" id="poll_type" >
-        @foreach ($polls as $poll)
-          <option value="{{ $poll->id }}">{{ $poll->type }}</option>
-        @endforeach
+      <select class="form-control" name="poll_type" id="poll_type" > 
+          <option value="0">5 Respuestas</option>
+          <option value="1">2 Respuestas</option>
       </select>
     </div>
 </div>

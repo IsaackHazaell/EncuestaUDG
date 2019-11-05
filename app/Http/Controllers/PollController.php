@@ -34,25 +34,8 @@ class PollController extends Controller
     public function showTableP()
     {
         $polls = DB::table('polls')
-          ->select('polls.*','polls.id poll_id','poll.*','poll.id as poll_id')
-          ->join('poll','poll.poll_id','polls.id')
-          ->get();
-          
-          return Datatables::of($polls)
-          ->addColumn('btn', 'polls.actions')
-          ->rawColumns(['btn'])
-          ->make(true);
-    }
-
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        $polls = Poll::all();
+        ->select('polls.*')
+        ->get();
         foreach($polls as $poll)
         {
             if ($poll->type == 0)
@@ -65,6 +48,21 @@ class PollController extends Controller
             }
         }
 
+        return Datatables::of($polls)
+           ->addColumn('btn','poll.actions')
+           ->rawColumns(['btn'])
+        ->make(true);
+    }
+
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        $polls = Poll::all();
         $groups = Group::all();
         foreach($groups as $group)
         {
@@ -152,6 +150,14 @@ class PollController extends Controller
      */
     public function destroy(Poll $poll)
     {
-        //
+        // $poll=Poll::findOrFail($poll);
+        $poll->delete();
+        $msg = [
+            'title' => 'Eliminado!',
+            'text' => 'Encuesta eliminado exitosamente.',
+            'icon' => 'success'
+        ];
+
+        return response()->json($msg);
     }
 }

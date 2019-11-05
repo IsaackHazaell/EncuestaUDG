@@ -16,7 +16,7 @@
       <a class="btn btn-success btn-md addNew" style="float: right;" href="{{ url('poll/create') }}"><b>Agregar Encuesta</b></a><br><br>
 
       <div class="box-body">
-          <table id="teachers_table" class="table table-striped table-bordered" style="width:100%">
+          <table id="polls_table" class="table table-striped table-bordered" style="width:100%">
           <thead>
               <tr>
                   <th>Nombre</th>
