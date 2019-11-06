@@ -17,6 +17,7 @@ class CreatePollsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name')->nullable();
             $table->integer('type');
+            $table->integer('public')->default(0);
             $table->timestamps();
         });
     }

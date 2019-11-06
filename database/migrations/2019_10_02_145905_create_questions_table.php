@@ -17,7 +17,7 @@ class CreateQuestionsTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('poll_id')->unsigned();
             $table->foreign('poll_id')
-                  ->references('id')->on('polls');
+                  ->references('id')->on('polls')->onDelete('cascade');
             $table->string('question');
             $table->timestamps();
         });

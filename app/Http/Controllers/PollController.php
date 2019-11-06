@@ -116,8 +116,8 @@ class PollController extends Controller
      */
     public function show(Poll $poll)
     {
-        $poll = DB::table('polls')->where('id', $poll->id)->first();
-        return view('poll.show', compact('polls'));
+        $questions = $poll->questions;
+        return view('poll.show', compact('poll', 'questions'));
     }
 
     /**
@@ -140,7 +140,55 @@ class PollController extends Controller
      */
     public function update(Request $request, Poll $poll)
     {
-        //
+        
+        $request->validate([
+            'name' => 'required',
+            'poll_type' => 'required',
+            'questions.*' =>'required'
+        ]);
+        $poll->name = $request->name;
+        $poll->type = $request->poll_type;
+        $poll->save();
+        
+        $i = 0;
+        foreach ($request->questions as $question) {
+            $poll->questions[$i]->question = $question;
+            $poll->questions[$i]->save();
+            $i++;
+        }
+        $msg = [
+            'title' => 'Encuesta actualizada correctamente',
+            'text' => 'Continuar..',
+            'icon' => 'success',
+        ];
+        return redirect()->route('poll.index')->with('message', $msg);
+
+    }
+
+    public function public(Poll $poll)
+    {
+        if($poll->public == 0)
+        {
+            $poll->public = 1;
+            $msg = [
+                'title' => 'Encuesta publicada correctamente',
+                'text' => 'Continuar..',
+                'icon' => 'success',
+            ];
+        }
+        else
+        {
+            $poll->public = 0;
+            $msg = [
+                'title' => 'Encuesta despublicada correctamente',
+                'text' => 'Continuar..',
+                'icon' => 'success',
+            ];
+        }
+        $poll->save();
+        return redirect()->route('poll.index')->with('message', $msg);
+    
+        
     }
 
     /**
@@ -151,7 +199,6 @@ class PollController extends Controller
      */
     public function destroy(Poll $poll)
     {
-        $poll=Poll::findOrFail($poll);
         $poll->delete();
         $msg = [
             'title' => 'Eliminado!',

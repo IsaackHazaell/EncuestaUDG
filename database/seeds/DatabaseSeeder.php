@@ -36,7 +36,7 @@ class DatabaseSeeder extends Seeder
             TeachersTableSeeder::class,
             GroupsTableSeeder::class,
             SubjectsTableSeeder::class,
-            PollsTableSeeder::class,
+/*             PollsTableSeeder::class, */
         ]);
     }
 }

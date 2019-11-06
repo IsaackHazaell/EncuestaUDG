@@ -1,4 +1,4 @@
-<a title="Publicar" class="btn btn-success btn-sm">
+<a title="Publicar" href="{{ route('poll.public', $id) }}" class="btn btn-success btn-sm">
   <span class="fa fa-send"></span>
 </a>
 
