@@ -116,7 +116,8 @@ class PollController extends Controller
      */
     public function show(Poll $poll)
     {
-        //
+        $poll = DB::table('polls')->where('id', $poll->id)->first();
+        return view('poll.show', compact('polls'));
     }
 
     /**
@@ -127,7 +128,7 @@ class PollController extends Controller
      */
     public function edit(Poll $poll)
     {
-        //
+        dd($poll);
     }
 
     /**
@@ -150,7 +151,7 @@ class PollController extends Controller
      */
     public function destroy(Poll $poll)
     {
-        // $poll=Poll::findOrFail($poll);
+        $poll=Poll::findOrFail($poll);
         $poll->delete();
         $msg = [
             'title' => 'Eliminado!',
