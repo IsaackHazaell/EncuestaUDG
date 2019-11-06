@@ -12,7 +12,7 @@
       
     <body>
       <div class="topnav" id="myTopnav">
-        <img src="{{ Storage::url("../storage/logoudg.png") }}" style="width:65px;" alt="">
+        <img src="{{ asset("img/logoudg.png") }}" style="width:65px;" alt="">
       </div>
 
       <div>

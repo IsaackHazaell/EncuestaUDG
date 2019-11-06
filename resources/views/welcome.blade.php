@@ -163,7 +163,7 @@
                       <body>
                       
                       <div class="topnav" id="myTopnav">
-                        <img src="{{ Storage::url("../storage/logoudg.png") }}" style="width:65px;" alt="">
+                        <img src="{{ asset("img/logoudg.png") }}" style="width:65px;" alt="">
                         <a href="{{url('/encuesta')}}">Encuesta</a>
                         @if (Route::has('login'))
                         @auth
@@ -193,7 +193,7 @@
     <body>
             <div class="content">
                 <div class="title m-b-md">
-                    <img src="{{ Storage::url("../storage/SE.jpg") }}" >
+                    <img src="{{ asset("img/SE.jpg") }}" >
                 </div>
             </div>
     </body> 
