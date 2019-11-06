@@ -208,4 +208,23 @@ class PollController extends Controller
 
         return response()->json($msg);
     }
+
+    public function showpolls()
+    {
+        $polls = Poll::where('public', 1)->with('questions', 'groups')->get();
+        $groups = Group::all();
+        foreach($groups as $group)
+        {
+            if ($group->turn == 0)
+            {
+                $group->turn = "M";
+            }
+            else
+            {
+                $group->turn = "V";
+            }
+        }
+       // dd($polls);
+        return view('client_poll.encuesta', compact('polls','groups'));
+    }
 }

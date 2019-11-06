@@ -15,9 +15,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/encuesta', function () {
+/* Route::get('/encuesta', function () {
     return view('encuesta');
-});
+}); */
 
 Auth::routes();
 
@@ -48,6 +48,7 @@ Route::get('showTableHD','HeadDepartmentController@showTableHD')->name('hdepartm
 //Poll rout's
 Route::resource('poll','PollController')->middleware('auth');
 Route::get('poll/public/{poll}','PollController@public')->name('poll.public')->middleware('auth');
+Route::get('encuesta','PollController@showpolls')->name('poll.encuesta');
 Route::get('showTableP','PollController@showTableP')->name('poll.showTableP')->middleware('auth');
 
 //Groups rout's
