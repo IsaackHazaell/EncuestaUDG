@@ -15,8 +15,11 @@ use App\Teacher;
 use App\HeadDepartment;
 use App\Group;
 use App\Subject;
-use App\TeacherSubject;
 use App\Type;
+use App\GroupTeacher;
+use App\GroupSubject;
+use App\TeacherSubject;
+use App\User;
 use Illuminate\Support\Facades\Storage;
 
 class PollController extends Controller
@@ -209,9 +212,9 @@ class PollController extends Controller
         return response()->json($msg);
     }
 
-    public function showpolls()
+    public function getGroups()
     {
-        $polls = Poll::where('public', 1)->with('questions', 'groups')->get();
+      //  $polls = Poll::where('public', 1)->with('questions', 'groups')->get();
         $groups = Group::all();
         foreach($groups as $group)
         {
@@ -225,6 +228,41 @@ class PollController extends Controller
             }
         }
        // dd($polls);
-        return view('client_poll.encuesta', compact('polls','groups'));
+        return view('client_poll.encuesta', compact('groups'));
     }
+
+    public function showpolls(Request $request)
+    {
+        $group = Group::findOrFail($request->group);
+        $polls = $group->polls;
+        $group_subjects = GroupSubject::where('group_id', $group->id)->get();
+    //    dd($group_subjects);
+        $group_teacher = [];
+        $subjects = [];
+        foreach ($group_subjects as $group_subject) 
+        {
+            $temp = GroupTeacher::where('groupsubject_id', $group_subject->id)->first();
+            $subject = Subject::where('id', $group_subject->subject_id )->first();
+            if($temp != null && $subject != null)
+            {
+                array_push($group_teacher,$temp);
+                array_push($subjects,$subject);
+            }
+        }
+        $teacher_subject = [];
+        foreach ($group_teacher as $teacher) 
+        {
+            $teacher_row =  TeacherSubject::where('id', $teacher->teachersubject_id)->first();
+            $employees = Teacher::where('id', $teacher_row->teacher_id)->first();
+            $compare = Employee::where('id', $employees->employee_id)->first();
+            $compare_teacher = User::where('id', $compare->user_id)->first();
+            if($compare_teacher != null)
+            {
+                array_push($teacher_subject, $compare_teacher);
+            }
+        }
+        
+        return view('client_poll.poll_view', compact('polls', 'subjects', 'teacher_subject'));
+    }
+
 }

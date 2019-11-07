@@ -20,15 +20,18 @@
       </div>
 
       <section style="display: block;" class="body current" id="wizard-p-4" role="tabpanel" aria-labelledby="wizard-h-4" aria-hidden="false">
+        <form action=" {{route('poll.show_polls')}} ">
+              <div class="form-group col-md-8">
+                <select class="form-control" name="group" id="group" onchange="show();">
+                    <option hidden disabled selected value> -- select an option -- </option>
+                    @foreach ($groups as $group)
+                      <option value="{{$group->id}}">{{$group->semester}}-{{$group->letter}} - {{$group->turn}}</option>
+                    @endforeach
+                </select>
+              </div>
 
-            <div class="form-group col-md-8">
-              <select class="form-control" name="group" id="group" onchange="show();">
-                  <option hidden disabled selected value> -- select an option -- </option>
-                  @foreach ($groups as $group)
-                    <option value="{{$group->id}}">{{$group->semester}}-{{$group->letter}} - {{$group->turn}}</option>
-                  @endforeach
-              </select>
-            </div>
+              <button id="send" class="btn btn-success" type="submit">Aceptar</button>
+          </form>
       </section>
 
     </body>            
@@ -40,6 +43,6 @@
     <link rel="stylesheet" href="{{asset('adminlte/css/skins/skin-blue.min.css')}}">
     {{-- <script src="{{asset('adminlte/bootstrap/dist/js/bootstrap.min.js')}}"></script>
     <script src="{{asset('adminlte/js/adminlte.min.js')}}"></script> --}}
-    @include('client_poll.partials.script');
+    @include('client_poll.partials.script')
 </html>
 

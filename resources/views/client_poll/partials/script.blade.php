@@ -1,10 +1,17 @@
 <script>
-
+window.onload = show();
 function show() {
-    var polls = @json($polls);
     var group1 = document.getElementById('group').selectedIndex;
+    if(group1 == 0)
+    {
+      document.getElementById('send').disabled = true;
+    }
+    else
+    {
+      document.getElementById('send').disabled = false;
+    }
 /*     console.log(polls[0]['groups'][0]['id']); */
-        polls.forEach(function(poll)
+/*         polls.forEach(function(poll)
         {
             poll['groups'].forEach(function(group) 
             {
@@ -13,7 +20,7 @@ function show() {
                     console.log(group['semester'] + group['letter'] + group['turn']);
                 }
             });
-        });
+        }); */
     };
 </script>
 

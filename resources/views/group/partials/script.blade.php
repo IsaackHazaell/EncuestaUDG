@@ -17,10 +17,29 @@
                 var x = document.getElementById("groupsubject_id");
                 var option = document.createElement("option");
                 option.text = subject['subject']['name'];
-                option.value = subject['subject_id'];
+                option.value = subject['id'];
                 x.add(option);
             }
         });
         // console.log(group_id);
     }
+      //SWETALERT
+        @if (Session::has('message'))
+                sAlert(
+                "{{ Session::get('message.title') }}",
+                "{{ Session::get('message.text') }}",
+                "{{ Session::get('message.icon') }}"
+            );
+        @endif
+
+        function sAlert(title, text, icon)
+        {
+            swal({
+            title: title,
+            text: text,
+            icon: icon,
+            button: "Continue",
+            timer: 3000
+            });
+        }
 </script>

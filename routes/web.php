@@ -48,7 +48,8 @@ Route::get('showTableHD','HeadDepartmentController@showTableHD')->name('hdepartm
 //Poll rout's
 Route::resource('poll','PollController')->middleware('auth');
 Route::get('poll/public/{poll}','PollController@public')->name('poll.public')->middleware('auth');
-Route::get('encuesta','PollController@showpolls')->name('poll.encuesta');
+Route::get('encuesta','PollController@getGroups')->name('poll.getGroups');
+Route::get('showpolls','PollController@showpolls')->name('poll.show_polls');
 Route::get('showTableP','PollController@showTableP')->name('poll.showTableP')->middleware('auth');
 
 //Groups rout's

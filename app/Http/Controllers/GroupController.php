@@ -63,16 +63,16 @@ class GroupController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request);
-        $groupsubjects = GroupSubject::all();
-        $teachersubjects = TeacherSubject::all();
-        $groups = Group::all();
         $group_teacher = GroupTeacher::create([
                 'groupsubject_id' => $request->groupsubject_id,
                 'teachersubject_id' => $request->teachersubject_id,
         ]);
-        return view('group.create')->with('groups',$groups)->with('groupsubjects',$groupsubjects)
-        ->with('teachersubjects',$teachersubjects);
+        $msg = [
+            'title' => 'Guardado!',
+            'text' => 'Grupo dado de alta exitosamente.',
+            'icon' => 'success'
+        ];
+        return redirect()->route('group.create')->with('message', $msg);
     }
 
     /**

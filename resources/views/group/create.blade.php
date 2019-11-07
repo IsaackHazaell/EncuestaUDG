@@ -8,14 +8,14 @@
   </h1>
 </section>
 
-<form action="{{url('group')}}" method="post">
-  {{csrf_field()}}
+<form action="{{route('group.store')}}" method="post">
+  @csrf
   <div class="box-body">
     <div class="form-row">
       <div class="form-group col-md-12">
         <a class="btn btn-primary btn-md addNew" style="float: right;" href="{{ url('group') }}"><b>Lista de grupos</b></a><br><br>
       </div>
-      {{-- Aqui van los imputs --}}
+      {{-- Aqui van los inputs --}}
       @include('group.form')
       <div class="form-group col-md-8">
         <button type="submit" class="btn btn-success">Guardar</button>
