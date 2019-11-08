@@ -13,7 +13,7 @@
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
 /* Route::get('/encuesta', function () {
     return view('encuesta');
@@ -49,7 +49,8 @@ Route::get('showTableHD','HeadDepartmentController@showTableHD')->name('hdepartm
 Route::resource('poll','PollController')->middleware('auth');
 Route::get('poll/public/{poll}','PollController@public')->name('poll.public')->middleware('auth');
 Route::get('encuesta','PollController@getGroups')->name('poll.getGroups');
-Route::get('showpolls','PollController@showpolls')->name('poll.show_polls');
+Route::post('/evaluate','PollController@evaluate')->name('poll.evaluate');
+Route::post('showpolls','PollController@showpolls')->name('poll.show_polls');
 Route::get('showTableP','PollController@showTableP')->name('poll.showTableP')->middleware('auth');
 
 //Groups rout's

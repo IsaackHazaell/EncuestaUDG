@@ -7,4 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class Constancy extends Model
 {
     //
+    protected $guarded = ['id'];
 }

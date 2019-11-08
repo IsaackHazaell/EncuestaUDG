@@ -20,6 +20,7 @@ use App\GroupTeacher;
 use App\GroupSubject;
 use App\TeacherSubject;
 use App\User;
+use App\Constancy;
 use Illuminate\Support\Facades\Storage;
 
 class PollController extends Controller
@@ -234,7 +235,7 @@ class PollController extends Controller
     public function showpolls(Request $request)
     {
         $group = Group::findOrFail($request->group);
-        $polls = $group->polls;
+        $polls = $group->polls->where('public', 1);
         $group_subjects = GroupSubject::where('group_id', $group->id)->get();
     //    dd($group_subjects);
         $group_teacher = [];
@@ -263,6 +264,45 @@ class PollController extends Controller
         }
         
         return view('client_poll.poll_view', compact('polls', 'subjects', 'teacher_subject'));
+    }
+
+
+    public function evaluate(Request $request)
+    {
+     //   dd($request);
+        $indice = 0;
+        $indice2 = 0;
+        
+        for ($i=0; $i < count($request->teacher_id) ; $i++) 
+        {   $result = 0;
+            $poll = Poll::find($request->poll_id[$i]);
+            $num = $poll->questions->count();
+            if($poll->type == 1)//2 respuestas
+            {
+                $sum = 0;
+                for ($j=0; $j < $num ; $j++) { 
+                  $sum += $request->answer_2[$indice];
+                  $indice++;
+                }
+                $result = $sum*100/$num;
+            }
+            else //5 respuestas
+            {
+                $sum = 0;
+                for ($k=0; $k < $num ; $k++) { 
+                    $sum +=  $request->answer_5[$indice2];
+                    $indice2++;
+                }
+                $result = $sum*100/$num;
+            }
+            $constancy = Constancy::create([
+                'teacher_id' => $request->teacher_id[$i],
+                'subject_id' => $request->subject_id[$i],
+                'result' => $result,
+            ]);
+        }
+
+        return redirect()->route('home');
     }
 
 }

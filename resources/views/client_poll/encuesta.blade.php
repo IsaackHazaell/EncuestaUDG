@@ -20,7 +20,8 @@
       </div>
 
       <section style="display: block;" class="body current" id="wizard-p-4" role="tabpanel" aria-labelledby="wizard-h-4" aria-hidden="false">
-        <form action=" {{route('poll.show_polls')}} ">
+        <form action=" {{route('poll.show_polls')}} " method="POST">
+          @csrf
               <div class="form-group col-md-8">
                 <select class="form-control" name="group" id="group" onchange="show();">
                     <option hidden disabled selected value> -- select an option -- </option>

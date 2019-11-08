@@ -15,6 +15,9 @@ class CreateConstanciesTable extends Migration
     {
         Schema::create('constancies', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('teacher_id');
+            $table->bigInteger('subject_id');
+            $table->integer('result');
             $table->timestamps();
         });
     }

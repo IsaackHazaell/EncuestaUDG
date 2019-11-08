@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Constancy;
 use Illuminate\Http\Request;
-
+use DB;
+use Yajra\DataTables\DataTables;
 class ConstancyController extends Controller
 {
     /**
@@ -36,6 +37,22 @@ class ConstancyController extends Controller
     public function store(Request $request)
     {
         //
+    }
+
+    public function showTableC()
+    {
+/*         $constancy = DB::table('constancies')
+        ->selectRaw('constancies.*, constancies.id as constanciesid, sum(result) as prom')
+        ->groupBy('constancies.teacher_id')
+        ->get(); */
+
+        $constancy = Constancy::groupBy('teacher_id')
+        ->selectRaw('avg(result) as sum, teacher_id')
+        ->get();
+
+       
+        return Datatables::of($constancy)
+        ->make(true);
     }
 
     /**

@@ -22,11 +22,16 @@
       </div>
 
     <div class="col-md-12">
-        <form action="">
+        <form action="{{route('poll.evaluate')}}" method="POST">
+            @csrf
             @for ($i = 0; $i <count($subjects); $i++)
                  @foreach ($polls as $poll)
                  <h2>{{$subjects[$i]->name}}</h2>
                  <h5>{{$teacher_subject[$i]->name}}</h5>
+                 <input type="hidden" name="teacher_id[]" value="{{$teacher_subject[$i]->id}}">
+                 <input type="hidden" name="subject_id[]" value="{{$subjects[$i]->id}}">
+                 <input type="hidden" name="poll_id[]" value="{{$poll->id}}">
+                 <input type="hidden" name="poll_tyoe[]" value="{{$poll->type}}">
                  <table class="col-12 table table-striped">
                      <thead>
                          <tr>
@@ -41,20 +46,20 @@
                              @if($poll->type == 0)
                                  <td class="col-6">
                                      <div class="form-group">
-                                         <select class="form-control" name="answer-5" id="">
-                                             <option value="excelente">Excelente</option>
-                                             <option value="muy_bueno">Muy bueno</option>
-                                             <option value="bueno">Bueno</option>
-                                             <option value="regular">Regular</option>
-                                             <option value="malo">Malo</option>
+                                         <select class="form-control" name="answer_5[]" id="">
+                                             <option value="5">Excelente</option>
+                                             <option value="4">Muy bueno</option>
+                                             <option value="3">Bueno</option>
+                                             <option value="2">Regular</option>
+                                             <option value="1">Malo</option>
                                          </select>
                                      </div>
                                  </td>
                              @else
                                  <td class="col-6">
-                                     <select name="answer-2" id="">
-                                         <option value="si">Si</option>
-                                         <option value="no">No</option>
+                                     <select name="answer_2[]" id="">
+                                         <option value="1">Si</option>
+                                         <option value="0">No</option>
                                      </select>
                                  </td>
                              @endif
