@@ -4,6 +4,7 @@
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="{{asset('css/style.css')}}">
+        <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
 
         <title>Preparatoria 13 - Encuestas</title>
 
@@ -40,6 +41,12 @@
                 </div>
             </form>
         </section>
+      </div>
+
+      <div class="content">
+          <div class="title m-b-md">
+              <img src="{{ asset("img/SE.jpg") }}" >
+          </div>
       </div>
 
     </body>            
