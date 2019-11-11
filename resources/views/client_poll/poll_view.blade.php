@@ -32,6 +32,7 @@
                  <input type="hidden" name="subject_id[]" value="{{$subjects[$i]->id}}">
                  <input type="hidden" name="poll_id[]" value="{{$poll->id}}">
                  <input type="hidden" name="poll_tyoe[]" value="{{$poll->type}}">
+                 <input type="hidden" name="group_id" value="{{$group_id}}">
                  <table class="col-12 table table-striped">
                      <thead>
                          <tr>

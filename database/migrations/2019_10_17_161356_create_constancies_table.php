@@ -18,6 +18,7 @@ class CreateConstanciesTable extends Migration
             $table->bigInteger('teacher_id');
             $table->bigInteger('subject_id');
             $table->integer('result');
+            $table->integer('group_id');
             $table->timestamps();
         });
     }

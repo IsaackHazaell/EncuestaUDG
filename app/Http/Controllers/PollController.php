@@ -262,8 +262,9 @@ class PollController extends Controller
                 array_push($teacher_subject, $compare_teacher);
             }
         }
+        $group_id = $group->id ;
         
-        return view('client_poll.poll_view', compact('polls', 'subjects', 'teacher_subject'));
+        return view('client_poll.poll_view', compact('polls', 'subjects', 'teacher_subject', 'group_id'));
     }
 
 
