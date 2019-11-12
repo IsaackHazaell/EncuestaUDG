@@ -11,6 +11,7 @@
                 {data: 'letter'},
                 {data: 'turn'},
                 {data: 'subjects_name'},
+                {data: 'department_name'},
                 {data: 'btn'},
 
             ],

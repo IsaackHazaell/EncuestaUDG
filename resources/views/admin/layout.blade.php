@@ -163,7 +163,7 @@ desired effect
       <!-- Sidebar Menu -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">Menú</li>
-
+@if(\Auth::user()->employee->contract == 'admin')
         <li class="treeview">
           <a href="#"><i class="fa fa-user-circle"></i> <span>Docentes</span>
             <span class="pull-right-container">
@@ -210,7 +210,7 @@ desired effect
             <li><a href="{{ url('poll/create') }}">Dar de alta encuesta</a></li>
           </ul>
         </li>
-
+@endif
         <li class="treeview">
           <a href="#"><i class="fa fa-file-text-o"></i> <span>Constancias</span>
             <span class="pull-right-container">
@@ -219,7 +219,7 @@ desired effect
           </a>
           <ul class="treeview-menu">
             <li><a href="{{ url('constancy') }}">Lista de constancias</a></li>
-            <li><a href="{{ url('constancy/create') }}">Dar de alta constancia</a></li>
+           {{--  <li><a href="{{ url('constancy/create') }}">Dar de alta constancia</a></li> --}}
           </ul>
         </li>
 

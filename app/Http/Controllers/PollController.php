@@ -251,6 +251,7 @@ class PollController extends Controller
             }
         }
         $teacher_subject = [];
+        $teachers = [];
         foreach ($group_teacher as $teacher) 
         {
             $teacher_row =  TeacherSubject::where('id', $teacher->teachersubject_id)->first();
@@ -260,10 +261,12 @@ class PollController extends Controller
             if($compare_teacher != null)
             {
                 array_push($teacher_subject, $compare_teacher);
+                array_push($teachers, $teacher_row->teacher_id);
             }
         }
+        $group_id = $group->id ;
         
-        return view('client_poll.poll_view', compact('polls', 'subjects', 'teacher_subject'));
+        return view('client_poll.poll_view', compact('polls', 'subjects', 'teacher_subject','teachers', 'group_id'));
     }
 
 
@@ -293,12 +296,13 @@ class PollController extends Controller
                     $sum +=  $request->answer_5[$indice2];
                     $indice2++;
                 }
-                $result = $sum*100/$num;
+                $result = $sum*100/($num*5);
             }
             $constancy = Constancy::create([
                 'teacher_id' => $request->teacher_id[$i],
                 'subject_id' => $request->subject_id[$i],
                 'result' => $result,
+                'group_id' => $request->group_id,
             ]);
         }
 

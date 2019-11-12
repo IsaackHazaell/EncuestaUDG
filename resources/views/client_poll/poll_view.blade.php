@@ -43,7 +43,7 @@
                         <h5>Profesor: {{$teacher_subject[$i]->name}}</h5>
                         <!-- <h6>{{$poll->name}}</h6> -->
                     </div>
-                    <input type="hidden" name="teacher_id[]" value="{{$teacher_subject[$i]->id}}">
+                    <input type="hidden" name="teacher_id[]" value="{{$teachers[$i]}}">
                     <input type="hidden" name="subject_id[]" value="{{$subjects[$i]->id}}">
                     <input type="hidden" name="poll_id[]" value="{{$poll->id}}">
                     <input type="hidden" name="poll_tyoe[]" value="{{$poll->type}}">
@@ -90,8 +90,6 @@
             </form>
         </div>
       </div>
-
-    
 
     </body>            
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
