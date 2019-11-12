@@ -21,6 +21,7 @@ class CreateGroupTeachersTable extends Migration
             $table->bigInteger('teachersubject_id')->unsigned();
             $table->foreign('teachersubject_id')
                   ->references('id')->on('teacher_subjects');
+            $table->integer('request')->default(0);
             $table->timestamps();
         });
     }

@@ -24,6 +24,7 @@
                   <th>Grupo</th>
                   <th>Turno</th>
                   <th>Materia</th>
+                  <th>Departamento</th>
                   <th width="120px">Acciones</th>
               </tr>
           </thead>
@@ -32,5 +33,5 @@
 @stop
 
 @section('adminlte_js')
-@include('constancy.partials.script')
+@include('constancy.partials.script_admin')
 @stop

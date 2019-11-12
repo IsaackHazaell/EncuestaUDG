@@ -60,4 +60,6 @@ Route::get('showTableG','GroupController@showTableG')->name('groups.showTableG')
 //Constancy rout's
 Route::resource('constancy','ConstancyController')->middleware('auth');
 Route::get('showTableC','ConstancyController@showTableC')->name('constancys.showTableC')->middleware('auth');
-
+Route::get('request/{id}','ConstancyController@request')->name('constancy.request')->middleware('auth');
+Route::get('accept/{id}/{result}','ConstancyController@accept')->name('constancy.accept')->middleware('auth');
+Route::get('download/{id}/{teacher}/{group}/{subject}','ConstancyController@download')->name('constancy.download')->middleware('auth');

@@ -28,7 +28,7 @@
                  @foreach ($polls as $poll)
                  <h2>{{$subjects[$i]->name}}</h2>
                  <h5>{{$teacher_subject[$i]->name}}</h5>
-                 <input type="hidden" name="teacher_id[]" value="{{$teacher_subject[$i]->id}}">
+                 <input type="hidden" name="teacher_id[]" value="{{$teachers[$i]}}">
                  <input type="hidden" name="subject_id[]" value="{{$subjects[$i]->id}}">
                  <input type="hidden" name="poll_id[]" value="{{$poll->id}}">
                  <input type="hidden" name="poll_tyoe[]" value="{{$poll->type}}">
