@@ -192,9 +192,9 @@ class ConstancyController extends Controller
     }
 
 
-    public function request($group_teacher_id)
+    public function request($group_teachers_id)
     {
-        $row = GroupTeacher::find($group_teacher_id);
+        $row = GroupTeacher::find($group_teachers_id);
         $row->request = 1; //Solicitado
         $row->save();
         $msg = [

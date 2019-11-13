@@ -272,7 +272,7 @@ class PollController extends Controller
 
     public function evaluate(Request $request)
     {
-     //   dd($request);
+        // dd($request);
         $indice = 0;
         $indice2 = 0;
         

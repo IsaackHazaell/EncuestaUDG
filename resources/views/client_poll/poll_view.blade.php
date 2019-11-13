@@ -46,7 +46,8 @@
                     <input type="hidden" name="teacher_id[]" value="{{$teachers[$i]}}">
                     <input type="hidden" name="subject_id[]" value="{{$subjects[$i]->id}}">
                     <input type="hidden" name="poll_id[]" value="{{$poll->id}}">
-                    <input type="hidden" name="poll_tyoe[]" value="{{$poll->type}}">
+                    <input type="hidden" name="poll_type[]" value="{{$poll->type}}">
+                    <input type="hidden" name="group_id" value="{{$group_id}}">
                     <table class="col-12 table table-striped">
                         <thead>
                             <tr>
@@ -62,6 +63,7 @@
                                     <td class="td-question">
                                         <div class="select-questions">
                                             <select class="form-control" name="answer_5[]" id="">
+                                                <option hidden disabled selected value> Respuesta </option>
                                                 <option value="5">Excelente</option>
                                                 <option value="4">Muy bueno</option>
                                                 <option value="3">Bueno</option>
