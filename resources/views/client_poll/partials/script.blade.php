@@ -34,3 +34,21 @@ function show() {
           }
         }
 </script>
+
+<script>
+
+window.onload = show_poll();
+function show_poll()
+{
+  var question1 = document.getElementById('question').selectedIndex;
+  if(question1 == 0)
+  {
+    document.getElementById('send_poll').disabled = true;
+  }
+  else
+  {
+    document.getElementById('send_poll').disabled = false;
+  }
+};
+
+</script>

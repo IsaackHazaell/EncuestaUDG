@@ -1,5 +1,3 @@
-
-
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -62,7 +60,7 @@
                                 @if($poll->type == 0)
                                     <td class="td-question">
                                         <div class="select-questions">
-                                            <select class="form-control" name="answer_5[]" id="">
+                                            <select class="form-control" name="answer_5[]" id="" onchange="show_poll()">
                                                 <option hidden disabled selected value> Respuesta </option>
                                                 <option value="5">Excelente</option>
                                                 <option value="4">Muy bueno</option>
@@ -74,7 +72,7 @@
                                     </td>
                                 @else
                                     <td class="td-question">
-                                        <select name="answer_2[]" id="">
+                                        <select name="answer_2[]" id="" onchange="show_poll()">
                                             <option value="1">Si</option>
                                             <option value="0">No</option>
                                         </select>
@@ -87,7 +85,7 @@
                 @endforeach
                 @endfor
                 <div class="poll-container button">
-                    <button type="submit" class="btn btn-success">Enviar</button>
+                    <button id="send_poll" type="submit" class="btn btn-success">Enviar</button>
                 </div>
             </form>
         </div>
